@@ -10,8 +10,8 @@ async function handleRegister(event) {
   form.innerHTML = "<p>Mohon tunggu... sedang mendaftarkan akun kamu ⏳</p>";
   const { data, error } = await supabase.auth.signUp({ email, password });
   if (error) {
-    form.innerHTML = `<p style="color:red;">Gagal daftar: ${error.message}</p><button onclick="location.reload()">Coba Lagi</button>`;
+    form.innerHTML = `<p style="color:red;">Gagal daftar: ${error.message}</p><button onclick=\"location.reload()\">Coba Lagi</button>`;
     return;
   }
-  form.innerHTML = `<h2>Pendaftaran Berhasil 🎉</h2><p>Silakan cek email kamu untuk verifikasi, lalu login ke akunmu</p><button onclick="window.location.href='index.html'" class="login-btn">Ke Login</button>`;
+  form.innerHTML = `<h2>Pendaftaran Berhasil 🎉</h2><p>Silakan cek email kamu untuk verifikasi, lalu login ke akunmu</p><button onclick=\"window.location.href='index.html'\" class='login-btn'>Ke Login</button>`;
 }
