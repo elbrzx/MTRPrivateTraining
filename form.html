@@ -2,48 +2,34 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <title>Input Latihan • MTR Private Training</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Input Latihan | MTR</title>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
   <div class="container">
-    <h2>Input Hasil Latihan 📝</h2>
-    <form id="form-latihan" onsubmit="return handleFormSubmit(event)">
+    <h2>Input Latihan</h2>
+    <form onsubmit="return handleForm(event)">
       <div class="input-group">
         <label for="tanggal">Tanggal</label>
         <input type="date" id="tanggal" required />
       </div>
-
       <div class="input-group">
         <label for="menu">Menu Latihan</label>
-        <input type="text" id="menu" placeholder="Contoh: Long Run 10K" required />
+        <input type="text" id="menu" required />
       </div>
-
       <div class="input-group">
-        <label for="jarak">Jarak (KM)</label>
-        <input type="number" id="jarak" step="0.1" required />
+        <label for="jarak">Jarak (km)</label>
+        <input type="number" id="jarak" required />
       </div>
-
       <div class="input-group">
         <label for="catatan">Catatan</label>
-        <textarea id="catatan" placeholder="Catatan latihan..." rows="3"></textarea>
+        <textarea id="catatan"></textarea>
       </div>
-
-      <div class="input-group">
-        <label for="link">Link Strava</label>
-        <input type="url" id="link" placeholder="https://www.strava.com/..." />
-      </div>
-
       <button type="submit" class="login-btn">Simpan</button>
     </form>
   </div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.42.3/dist/supabase.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.42.3/dist/supabase.umd.js"></script>
   <script src="js/form.js"></script>
-  <!-- Supabase CDN -->
-
-
-<!-- File JS kamu -->
-<script src="js/auth.js"></script>
-
 </body>
 </html>
