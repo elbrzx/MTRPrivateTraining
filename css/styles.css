@@ -113,3 +113,11 @@ body {
 .footer-text a:hover {
   color: #fff;
 }
+.logo {
+  width: 100px;
+  height: auto;
+  display: block;
+  margin: 0 auto 20px auto;
+  max-width: 100%;
+  object-fit: contain;
+}
