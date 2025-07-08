@@ -124,10 +124,13 @@ body {
 }
 
 .show-password {
-  margin-top: 5px;
-  font-size: 0.9em;
-  color: #555;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  font-size: 0.85em;
+  color: #666;
+  text-align: right;
+  margin-top: 4px;
+}
+
+.show-password input[type="checkbox"] {
+  transform: scale(0.85); /* kecilin checkbox */
+  margin-right: 4px;
 }
