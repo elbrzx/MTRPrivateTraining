@@ -2,30 +2,18 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <title>Dashboard • MTR Private Training</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | MTR</title>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
   <div class="container">
-    <header class="header">
-      <img src="assets/logo.png" class="logo" />
-      <h2>Hai, <span id="user-name">Runner!</span></h2>
-      <button onclick="logout()">Logout</button>
-    </header>
-
-    <section class="section">
-      <h3>Riwayat Latihan Kamu 🏃</h3>
-      <div id="training-list" class="card-list">Memuat data...</div>
-    </section>
+    <h2>Hai, <span id="user-name"></span>!</h2>
+    <button onclick="logout()" class="logout-btn">Logout</button>
+    <h3>Riwayat Latihan</h3>
+    <div id="training-list"></div>
   </div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.42.3/dist/supabase.umd.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.42.3/dist/supabase.umd.js"></script>
   <script src="js/dashboard.js"></script>
-  <!-- Supabase CDN -->
-
-
-<!-- File JS kamu -->
-<script src="js/auth.js"></script>
-
 </body>
 </html>
