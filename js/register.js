@@ -19,7 +19,7 @@ window.handleRegister = async function (e) {
   if (error) {
     errorBox.textContent = "Gagal daftar: " + error.message;
   } else {
-    alert("Berhasil daftar! Silahkan konfirmasi Email untuk login.");
+    alert("Berhasil daftar! Silahkan login.");
     window.location.href = "index.html";
   }
 };
