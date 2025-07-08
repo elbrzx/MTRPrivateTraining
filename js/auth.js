@@ -2,21 +2,25 @@
 const supabase = createClient(
   'https://uvwvnxysnyqnvchzzkjg.supabase.co', 
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV2d3ZueHlzbnlxbnZjaHp6a2pnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE5ODQ3MTEsImV4cCI6MjA2NzU2MDcxMX0.jxyo6TOoJnnkuhtc-YGjO3cMSjIoR95IUznSDjEB_ko'
-);
+const supabase = supabase.createClient(supabaseUrl, supabaseAnonKey);
 
-window.login = async () => {
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
+// Fungsi Login
+window.handleLogin = async function (e) {
+  e.preventDefault(); // biar nggak reload form
+
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const errorBox = document.getElementById("error");
 
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
-    password
+    password,
   });
 
   if (error) {
-    document.getElementById('error').textContent = error.message;
+    errorBox.textContent = "Login gagal: " + error.message;
   } else {
-    // Login sukses
-    window.location.href = 'dashboard.html';
+    // Kalau sukses login
+    window.location.href = "home.html";
   }
 };
