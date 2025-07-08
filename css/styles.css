@@ -122,3 +122,12 @@ body {
   max-width: 100%;
   object-fit: contain;
 }
+
+.show-password {
+  margin-top: 5px;
+  font-size: 0.9em;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
