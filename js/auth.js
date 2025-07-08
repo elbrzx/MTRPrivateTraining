@@ -5,12 +5,20 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Fungsi Login
 window.handleLogin = async function (e) {
-  e.preventDefault(); // biar nggak reload form
+  e.preventDefault(); // biar nggak reload
 
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
   const errorBox = document.getElementById("error");
+  errorBox.textContent = "";
 
+  // Cek kalau kosong
+  if (!email || !password) {
+    errorBox.textContent = "Email dan password wajib diisi.";
+    return;
+  }
+
+  // Proses login
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
