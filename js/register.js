@@ -52,6 +52,6 @@ window.handleRegister = async function (e) {
     return;
   }
 
-  alert("Berhasil daftar! Silakan cek email untuk konfirmasi.");
+  alert("Berhasil daftar! Silakan Login.");
   window.location.href = "index.html";
 };
