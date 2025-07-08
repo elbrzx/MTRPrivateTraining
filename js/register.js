@@ -53,5 +53,5 @@ window.handleRegister = async function (e) {
   }
 
   alert("Berhasil daftar! Silakan Login.");
-  window.location.href = "index.html";
+  window.location.href = "home.html";
 };
