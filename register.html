@@ -22,6 +22,10 @@
       <div class="input-group">
         <label for="password">Password</label>
         <input type="password" id="password" required />
+        <div class="show-password">
+          <input type="checkbox" id="show-password" onchange="togglePassword()" />
+          <label for="show-password">Lihat Password</label>
+        </div>
       </div>
 
       <button type="submit" class="login-btn">Daftar</button>
@@ -31,5 +35,12 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"></script>
   <script src="js/register.js"></script>
+
+  <script>
+    function togglePassword() {
+      const input = document.getElementById("password");
+      input.type = input.type === "password" ? "text" : "password";
+    }
+  </script>
 </body>
 </html>
