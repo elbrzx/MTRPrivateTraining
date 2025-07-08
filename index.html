@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login • Running Team</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <title>Login • MHM Running</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-
   <div class="container">
     <form class="login-form" onsubmit="return handleLogin(event)">
-      <h2>Welcome Back 👋</h2>
-      <p>Silakan masuk untuk melihat progress lari kamu</p>
+      <img src="assets/logo.png" class="logo" alt="Logo" />
+      <h2>Selamat Datang!</h2>
+      <p>Masuk untuk melihat progres latihanmu 💪</p>
 
       <div class="input-group">
         <label for="email">Email</label>
-        <input type="email" id="email" placeholder="contoh@email.com" required />
+        <input type="email" id="email" placeholder="kamu@email.com" required />
       </div>
 
       <div class="input-group">
@@ -25,10 +25,10 @@
 
       <button type="submit" class="login-btn">Masuk</button>
 
-      <p class="footer-text">Belum punya akun? <a href="#">Daftar</a></p>
+      <p class="footer-text">Belum punya akun? <a href="#">Daftar di sini</a></p>
     </form>
   </div>
 
-  <script src="script.js"></script>
+  <script src="js/auth.js"></script>
 </body>
 </html>
