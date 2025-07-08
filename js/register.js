@@ -7,19 +7,51 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 window.handleRegister = async function (e) {
   e.preventDefault();
 
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const confirmPassword = document.getElementById("confirm-password").value.trim();
+  const username = document.getElementById("username").value.trim();
   const errorBox = document.getElementById("error");
+  errorBox.textContent = "";
 
-  const { data, error } = await supabase.auth.signUp({
+  // Validasi password cocok
+  if (password !== confirmPassword) {
+    errorBox.textContent = "Password dan konfirmasi password tidak sama.";
+    return;
+  }
+
+  // Sign up ke Supabase Auth
+  const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
     email,
     password,
   });
 
-  if (error) {
-    errorBox.textContent = "Gagal daftar: " + error.message;
-  } else {
-    alert("Berhasil daftar! Silahkan login.");
-    window.location.href = "index.html";
+  if (signUpError) {
+    errorBox.textContent = "Gagal daftar: " + signUpError.message;
+    return;
   }
+
+  // Ambil ID user dari hasil signup
+  const userId = signUpData.user?.id;
+  if (!userId) {
+    errorBox.textContent = "Gagal mendapatkan ID user.";
+    return;
+  }
+
+  // Simpan username ke tabel profiles
+  const { error: insertError } = await supabase.from("profiles").insert([
+    {
+      id: userId,
+      username: username,
+      created_at: new Date().toISOString(),
+    },
+  ]);
+
+  if (insertError) {
+    errorBox.textContent = "Gagal menyimpan data profil: " + insertError.message;
+    return;
+  }
+
+  alert("Berhasil daftar! Silakan cek email untuk konfirmasi.");
+  window.location.href = "index.html";
 };
