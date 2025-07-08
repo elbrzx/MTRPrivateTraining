@@ -9,21 +9,33 @@ async function handleRegister(event) {
 
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
+  const form = document.querySelector(".login-form");
 
   if (!email || !password) {
-    alert("Email dan password wajib diisi!");
+    alert("Email dan password wajib diisi");
     return;
   }
 
+  // Tampilkan loading view
+  form.innerHTML = "<p>Mohon tunggu... sedang mendaftarkan akun kamu ⏳</p>";
+
   const { data, error } = await supabase.auth.signUp({
     email,
-    password,
+    password
   });
 
   if (error) {
-    alert("Pendaftaran gagal: " + error.message);
-  } else {
-    alert("Berhasil daftar! Silakan cek email untuk verifikasi lalu login.");
-    window.location.href = "index.html";
+    form.innerHTML = `
+      <p style="color:red;">Gagal daftar: ${error.message}</p>
+      <button onclick="location.reload()">Coba Lagi</button>
+    `;
+    return;
   }
+
+  // ✅ Jika sukses, tampilkan pesan & tombol kembali ke login
+  form.innerHTML = `
+    <h2>Pendaftaran Berhasil! 🎉</h2>
+    <p>Silakan cek email kamu untuk verifikasi, lalu login ke akunmu</p>
+    <button onclick="window.location.href='index.html'" class="login-btn">Menuju Halaman Login</button>
+  `;
 }
