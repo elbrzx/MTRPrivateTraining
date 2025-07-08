@@ -9,6 +9,7 @@ async function handleForm(event) {
   const menu = document.getElementById("menu").value;
   const jarak = document.getElementById("jarak").value;
   const catatan = document.getElementById("catatan").value;
+
   const { error } = await supabase.from("progress_latihan").insert({
     email,
     tanggal,
@@ -16,6 +17,7 @@ async function handleForm(event) {
     jarak,
     catatan
   });
+
   if (error) {
     alert("Gagal simpan data: " + error.message);
   } else {
