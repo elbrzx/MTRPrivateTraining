@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | MTR Training</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
+  <div class="container">
+    <form class="login-form" onsubmit="return handleLogin(event)">
+      <img src="assets/logo.png" class="logo" alt="Logo" />
+      <h2>Welcome MTR Runner</h2>
+      <p>Masuk untuk melihat progres latihanmu 💪</p>
+
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" required />
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" required />
+      </div>
+
+      <button type="submit" class="login-btn">Masuk</button>
+
+      <p class="footer-text">Belum punya akun? <a href="register.html">Daftar di sini</a></p>
+      <p id="error" style="color:#ffdddd; text-align:center; margin-top:10px;"></p>
+    </form>
+  </div>
+
+  <script type="module" src="js/auth.js"></script>
+</body>
+</html>
