@@ -172,15 +172,20 @@ body {
 
 /* Icon di kiri */
 .stat-icon {
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
 }
 
 .stat-icon img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  display: block;
 }
 
 /* Text (angka + label) di kanan */
