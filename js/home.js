@@ -55,9 +55,9 @@ const loadDashboardData = async () => {
 // 🗓 Generate calendar
 const generateCalendar = (latihan = [], today = new Date()) => {
   const calendarContainer = document.getElementById("calendar");
-  const year = 2025;
-  const month = 6; // July = 6 (0-based index)
-  const daysInMonth = 31;
+ const year = today.getFullYear(); // Realtime year
+  const month = today.getMonth();   // Realtime month (0-11)
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
   const startDay = new Date(year, month, 1).getDay(); // 0 = Sunday
 
   if (!calendarContainer) return;
