@@ -132,6 +132,9 @@ body {
   background: #fff;
   border-radius: 1rem;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .calendar-header {
@@ -147,21 +150,27 @@ body {
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
+  grid-auto-rows: 1fr; /* <<< ini bikin baris fleksibel */
+  gap: 8px;
+  width: 100%;
+  flex-grow: 1;
+  min-height: 300px; /* ketinggian minimum */
 }
 
 .calendar-day {
   background: #f1f1f1;
-  aspect-ratio: 1 / 1; /* Bikin kotak sempurna */
   border-radius: 10px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
+  color: var(--text-dark);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-dark);
   transition: 0.2s;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  aspect-ratio: 1 / 1; /* Kotak sempurna */
+  position: relative;
+  overflow: hidden;
 }
 
 .calendar-day.today {
