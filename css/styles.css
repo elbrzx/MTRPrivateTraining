@@ -1,379 +1,312 @@
+/* ========== ROOT & BASE ========== */
 :root {
-    --primary-color: #ff4000;
-    --bg-color: #f5f5f5;
-    --text-dark: #222;
-    --text-light: #888;
-    --success-color: #3adb35;
-    --error-color: #ff3b3b;
-    --card-bg: #333;
-    --white: #fff;
+  --primary-color: #ff4000;
+  --bg-color: #f5f5f5;
+  --text-dark: #222;
+  --text-light: #888;
+  --success-color: #3adb35;
+  --error-color: #ff3b3b;
+  --card-bg: #333;
+  --white: #fff;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: var(--bg-color);
-    color: var(--text-dark);
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg-color);
+  color: var(--text-dark);
 }
 
+/* ========== LOGO ========== */
 .logo {
-    width: 100px;
-    height: auto;
-    margin: 0;
-    display: block;
+  width: 100px;
+  height: auto;
+  margin: 0;
+  display: block;
 }
 
+/* ========== CONTAINER ========== */
 .container {
-    max-width: 480px;
-    margin: auto;
-    padding: 1rem;
-    background: var(--white);
-    min-height: 100vh;
-    border-radius: 1rem 1rem 0 0;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-width: 480px;
+  margin: auto;
+  padding: 1rem;
+  background: var(--white);
+  min-height: 100vh;
+  border-radius: 1rem 1rem 0 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* ========== TOPBAR & SIDEBAR ========== */
+/* ========== TOPBAR ========== */
 .topbar {
-    background: white;
-    padding: 0.5rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #ddd;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    height: auto;
-}
-
-.topbar h1 {
-    display: flex;
-    align-items: center;
-    margin: 0;
+  background: white;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 .menu-btn {
-    font-size: 1.5rem;
-    background: none;
-    border: none;
-    color: var(--primary-color);
-    cursor: pointer;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
 }
 
 .profile-pic {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 2px solid var(--primary-color);
-    object-fit: cover;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--primary-color);
+  object-fit: cover;
 }
 
-/* ========== SIDEBAR NAV ========== */
+/* ========== SIDEBAR ========== */
 #sidebar {
-    position: fixed;
-    left: -250px;
-    top: 0;
-    bottom: 0;
-    width: 220px;
-    background-color: white;
-    border-right: 2px solid #eee;
-    padding: 2rem 1rem;
-    transition: left 0.3s ease;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  position: fixed;
+  left: -250px;
+  top: 0;
+  bottom: 0;
+  width: 220px;
+  background-color: white;
+  border-right: 2px solid #eee;
+  padding: 2rem 1rem;
+  transition: left 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 #sidebar.active {
-    left: 0;
+  left: 0;
 }
 
 #sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 #sidebar ul li {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 #sidebar ul li a {
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1rem;
-    color: var(--text-dark);
-    display: flex;
-    align-items: center;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
 }
 
 .sidebar-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-    vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }
 
-.sidebar-logout {
-    border-top: 1px solid #eee;
-    padding-top: 1rem;
-    margin-top: auto;
-}
-
-/* ========== CALENDAR (DIPERBAIKI) ========== */
+/* ========== CALENDAR ========== */
 .calendar-section {
-    margin: 0.5rem 0;
-    padding: 0.5rem 0;
-    background: #fff;
-    border-radius: 1rem;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    width: 100%;
-    overflow: hidden; /* Prevent section overflow */
-    box-sizing: border-box;
+  margin: 0.5rem 0 1rem;
+  padding: 0.5rem;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 .calendar-header {
-    display: flex;
-    justify-content: space-between; /* Untuk navigasi kiri-kanan */
-    align-items: center;
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    color: var(--text-dark);
-    padding: 0 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+  gap: 1rem;
 }
 
 .calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 6px;
-    width: 100%;
-    padding: 0 0.5rem;
-    box-sizing: border-box;
-    margin: 0;
-    overflow: hidden; /* Prevent grid overflow */
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
 }
 
 .calendar-day {
-    position: relative;
-    background: #f1f1f1;
-    aspect-ratio: 1 / 1;
-    border-radius: 10px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-dark);
-    transition: 0.2s;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    min-width: 0;
-    max-width: 100%;
-    overflow: hidden; /* Prevent overflow */
-    box-sizing: border-box; /* Include padding and border in size */
-    cursor: pointer;
-    text-align: center; /* Center text */
-    line-height: 1; /* Consistent line height */
-    border: none; /* Remove any default borders */
-    outline: none; /* Remove focus outline */
-}
-
-.calendar-day:hover {
-    background: var(--primary-color);
-    color: white;
+  background: #f1f1f1;
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dark);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .calendar-day.today {
-    background: #444;
-    color: #fff;
-    font-weight: bold;
-    box-shadow: 0 0 8px rgba(68, 68, 68, 0.5);
+  background: #444;
+  color: #fff;
+  font-weight: bold;
 }
 
 .calendar-day.green {
-    border-bottom: 4px solid var(--success-color);
-    background: #eaffec;
+  border-bottom: 4px solid var(--success-color);
+  background: #eaffec;
 }
 
 .calendar-day.orange {
-    border-bottom: 4px solid var(--primary-color);
-    background: #fff0e8;
-}
-
-.calendar-day.blue {
-    border-bottom: 4px solid #007bff;
-    background: #e6f0ff;
+  border-bottom: 4px solid var(--primary-color);
+  background: #fff0e8;
 }
 
 .calendar-nav {
-    background: none;
-    border: none;
-    padding: 8px;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: background 0.2s;
-}
-
-.calendar-nav:hover {
-    background: rgba(255, 64, 0, 0.1);
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
 }
 
 .calendar-nav-icon {
-    width: 24px;
-    height: 24px;
-    filter: invert(48%) sepia(92%) saturate(5623%) hue-rotate(2deg) brightness(103%) contrast(101%);
-    transition: transform 0.2s ease;
+  width: 24px;
+  height: 24px;
+  filter: invert(48%) sepia(92%) saturate(5623%) hue-rotate(2deg) brightness(103%) contrast(101%);
+  transition: transform 0.2s ease;
 }
 
 .calendar-nav:hover .calendar-nav-icon {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
-@media (max-width: 480px) {
-    .calendar-grid {
-        gap: 4px;
-        padding: 0 0.25rem;
-    }
-    
-    .calendar-day {
-        font-size: 1rem;
-        border-radius: 8px;
-    }
-}
-
-/* ========== STAT BOX WRAPPER ========== */
+/* ========== STATISTICS ========== */
 .stats-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
-/* ========== INDIVIDUAL STAT BOX ========== */
 .stat-box {
-    flex: 1 1 calc(50% - 0.5rem);
-    background: var(--card-bg);
-    border-radius: 20px;
-    padding: 1.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 100px;
-    box-sizing: border-box;
+  flex: 1 1 calc(50% - 0.5rem);
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100px;
+  box-sizing: border-box;
 }
 
 .stat-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 53px;
-    height: 53px;
-    min-width: 53px;
-    min-height: 53px;
+  width: 53px;
+  height: 53px;
+  min-width: 53px;
+  min-height: 53px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .stat-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-.stat-box .stat-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
+.stat-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
 }
 
-.stat-box .stat-number {
-    font-size: 3.2rem;
-    font-weight: bold;
-    color: var(--success-color);
-    line-height: 1;
+.stat-number {
+  font-size: 3.2rem;
+  font-weight: bold;
+  color: var(--success-color);
+  line-height: 1;
 }
 
-.stat-box .stat-label {
-    font-size: 0.95rem;
-    font-weight: bold;
-    color: var(--white);
-    margin-top: 0.3rem;
-    text-align: right;
+.stat-label {
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: var(--white);
+  margin-top: 0.3rem;
+  text-align: right;
 }
 
-.stat-box .stat-desc {
-    font-size: 0.70rem;
-    font-weight: light;
-    color: var(--success-color);
-    margin-top: 0.3rem;
-    text-align: right;
+.stat-desc {
+  font-size: 0.70rem;
+  font-weight: normal;
+  color: var(--success-color);
+  text-align: right;
 }
 
-/* ========== UPLOAD BUTTON ========== */
 .upload-btn {
-    background: var(--primary-color);
-    color: white;
-    font-weight: bold;
-    padding: 1.1rem;
-    width: 100%;
-    border: none;
-    border-radius: 15px;
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
-    cursor: pointer;
+  background: var(--primary-color);
+  color: white;
+  font-weight: bold;
+  padding: 1.1rem;
+  width: 100%;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
 }
 
-/* ========== TASK SECTION ========== */
-.task-section {
-    margin-top: 1.5rem;
-}
-
+/* ========== TASK LIST ========== */
 .task-section h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.75rem;
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
 }
 
 .task-item {
-    background: var(--card-bg);
-    color: white;
-    border-radius: 15px;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.75rem;
-    font-size: 1rem;
+  background: var(--card-bg);
+  color: white;
+  border-radius: 15px;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
 }
 
 .task-item.done span::before {
-    content: "✅ ";
-    color: var(--success-color);
+  content: "✅ ";
+  color: var(--success-color);
 }
 
 .task-item.missed span::before {
-    content: "❌ ";
-    color: var(--error-color);
+  content: "❌ ";
+  color: var(--error-color);
 }
 
 .task-item a {
-    color: #ffb84d;
-    font-weight: bold;
-    text-decoration: none;
+  color: #ffb84d;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 /* ========== LOGOUT BUTTON ========== */
 .logout-btn {
-    margin-top: 1.5rem;
-    background: white;
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-    font-weight: bold;
-    padding: 0.75rem;
-    width: 100%;
-    border-radius: 12px;
-    font-size: 1rem;
-    cursor: pointer;
+  margin-top: 1.5rem;
+  background: white;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  font-weight: bold;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
 }
