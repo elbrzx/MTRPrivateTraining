@@ -79,9 +79,14 @@ uploadInput.addEventListener("change", async (event) => {
     .update({ profile_url: publicUrl })
     .eq("id", userId);
 
-  profileImgEl.src = publicUrl;
+ profileImgEl.src = publicUrl;
+  // Tambahkan animasi upload
+  profileImgEl.classList.add("animate-upload");
+  setTimeout(() => {
+    profileImgEl.classList.remove("animate-upload");
+  }, 500); // hapus setelah animasi selesai
+
   alert("Foto berhasil diperbarui! ✨");
-});
 
 // Trigger file input saat klik icon
 editIcon.addEventListener("click", () => {
