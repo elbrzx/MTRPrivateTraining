@@ -37,7 +37,7 @@ body {
 /* ========== TOPBAR & SIDEBAR ========== */
 .topbar {
   background: white;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -46,6 +46,12 @@ body {
   top: 0;
   z-index: 999;
   height: auto;
+}
+
+.topbar h1 {
+  display: flex;
+  align-items: center;
+  margin: 0;
 }
 
 .menu-btn {
