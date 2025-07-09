@@ -106,18 +106,21 @@
       if (sidebar.classList.contains('active') && clickedOutsideSidebar && clickedOutsideButton) {
         sidebar.classList.remove('active');
       }
-    });
-
-    async function handleLogout() {
-      const { createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');
-      const supabase = createClient("https://uvwvnxysnyqnvchzzkjg.supabase.co", "...token...");
-      const { error } = await supabase.auth.signOut();
-      if (!error) {
-        window.location.href = "index.html";
-      } else {
-        alert("Gagal logout: " + error.message);
-      }
     }
   </script>
+   <!-- Logout -->
+  <script type="module">
+  import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+  const supabase = createClient("https://uvwvnxysnyqnvchzzkjg.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV2d3ZueHlzbnlxbnZjaHp6a2pnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE5ODQ3MTEsImV4cCI6MjA2NzU2MDcxMX0.jxyo6TOoJnnkuhtc-YGjO3cMSjIoR95IUznSDjEB_ko");
+
+  window.handleLogout = async function () {
+    const { error } = await supabase.auth.signOut();
+    if (!error) {
+      window.location.href = "index.html";
+    } else {
+      alert("Gagal logout: " + error.message);
+    }
+  };
+</script>
 </body>
 </html>
