@@ -3,11 +3,6 @@ const supabaseUrl = 'https://uvwvnxysnyqnvchzzkjg.supabase.co';
 const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV2d3ZueHlzbnlxbnZjaHp6a2pnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE5ODQ3MTEsImV4cCI6MjA2NzU2MDcxMX0.jxyo6TOoJnnkuhtc-YGjO3cMSjIoR95IUznSDjEB_ko';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-// === Supabase Setup ===
-const supabaseUrl = 'https://uvwvnxysnyqnvchzzkjg.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'; // sudah kamu punya
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
 // === Elemen DOM ===
 const usernameEl = document.getElementById("username");
 const stravaLinkEl = document.getElementById("strava-link");
