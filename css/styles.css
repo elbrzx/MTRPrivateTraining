@@ -21,6 +21,7 @@ body {
   width: 100px;
   height: auto;
   margin: 0;
+  display: block;
 }
 
 .container {
@@ -35,7 +36,7 @@ body {
 
 .topbar {
   background: white;
-  padding: 0.25rem 0.75rem;
+  padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -43,7 +44,6 @@ body {
   position: sticky;
   top: 0;
   z-index: 999;
-  height: 48px;
 }
 
 .menu-btn {
