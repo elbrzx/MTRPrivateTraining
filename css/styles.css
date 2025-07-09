@@ -105,16 +105,9 @@ body {
   color: var(--text-dark);
 }
 
-/* ========== GREETING ========== */
-.greeting {
-  margin-top: 1rem;
-  font-size: 1.4rem;
-  font-weight: bold;
-}
-
 /* ========== CALENDAR ========== */
 .calendar-section {
-  margin: 2rem 0;
+  margin: 1rem 0;
   padding: 1rem;
   background: #fff;
   border-radius: 1rem;
