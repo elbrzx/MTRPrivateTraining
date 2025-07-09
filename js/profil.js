@@ -24,16 +24,18 @@ async function loadProfile() {
   const user = session.user;
   userId = user.id;
 
-  // Ambil profil user dari tabel "users" (jika kamu punya)
+  // Ambil profil user dari tabel "profiles"
   const { data: profileData } = await supabase
-    .from("users")
+    .from("profiles")
     .select("nama, strava_url, profile_url")
     .eq("id", userId)
     .single();
 
   usernameEl.textContent = profileData?.nama || user.email;
   stravaLinkEl.href = profileData?.strava_url || "#";
-  stravaLinkEl.textContent = profileData?.strava_url ? "🌐 Lihat Profil Strava" : "⚠️ Strava belum ditautkan";
+  stravaLinkEl.textContent = profileData?.strava_url
+    ? "🌐 Lihat Profil Strava"
+    : "⚠️ Strava belum ditautkan";
 
   if (profileData?.profile_url) {
     profileImgEl.src = profileData.profile_url;
@@ -78,7 +80,7 @@ uploadInput.addEventListener("change", async (event) => {
   const filePath = `profile-pics/${userId}-${Date.now()}.${file.name.split('.').pop()}`;
 
   const { error: uploadError } = await supabase.storage
-    .from("avatars") // kamu harus buat bucket bernama "avatars"
+    .from("avatars")
     .upload(filePath, file, { cacheControl: "3600", upsert: true });
 
   if (uploadError) {
@@ -89,9 +91,9 @@ uploadInput.addEventListener("change", async (event) => {
   const { data } = supabase.storage.from("avatars").getPublicUrl(filePath);
   const imageUrl = data.publicUrl;
 
-  // Update ke tabel users
+  // Update ke tabel profiles
   await supabase
-    .from("users")
+    .from("profiles")
     .update({ profile_url: imageUrl })
     .eq("id", userId);
 
