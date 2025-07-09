@@ -7,18 +7,32 @@
   <link rel="stylesheet" href="css/styles.css" />
   <script type="module" src="js/home.js"></script>
   <script>
-    function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('active');
-    }
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+  }
 
-    function goToProfile() {
-      window.location.href = 'profile.html';
-    }
+  function goToProfile() {
+    window.location.href = 'profile.html';
+  }
 
-    function uploadTraining() {
-      window.location.href = 'form.html';
+  function uploadTraining() {
+    window.location.href = 'form.html';
+  }
+
+  // ✨ Tambahan: auto close sidebar kalau klik di luar
+  document.addEventListener('click', function (event) {
+    const sidebar = document.getElementById('sidebar');
+    const toggleButton = document.getElementById('menu-toggle');
+
+    const clickedOutsideSidebar = !sidebar.contains(event.target);
+    const clickedOutsideButton = !toggleButton.contains(event.target);
+
+    if (sidebar.classList.contains('active') && clickedOutsideSidebar && clickedOutsideButton) {
+      sidebar.classList.remove('active');
     }
-  </script>
+  });
+</script>
+
 </head>
 
 <body>
