@@ -67,7 +67,7 @@ const generateCalendar = (latihan = [], direction = null) => {
     "Juli", "Agustus", "September", "Oktober", "November", "Desember"
   ];
 
-  const dayNames = ["S", "M", "T", "W", "T", "F", "S"]; // Short format
+  const dayNames = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"];
 
   calendarTitleEl.textContent = `${monthNames[month]} ${year}`;
 
