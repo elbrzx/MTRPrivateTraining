@@ -6,36 +6,32 @@
   <title>Dashboard | MTR Private Training</title>
   <link rel="stylesheet" href="css/styles.css" />
   <script type="module" src="js/home.js"></script>
+
   <script>
-  function toggleSidebar() {
-    document.getElementById('sidebar').classList.toggle('active');
-  }
-
-  function goToProfile() {
-    window.location.href = 'profil.html';
-  }
-
-  function uploadTraining() {
-    window.location.href = 'form.html';
-  }
-
-  // ✨ Tambahan: auto close sidebar kalau klik di luar
-  document.addEventListener('click', function (event) {
-    const sidebar = document.getElementById('sidebar');
-    const toggleButton = document.getElementById('menu-toggle');
-
-    const clickedOutsideSidebar = !sidebar.contains(event.target);
-    const clickedOutsideButton = !toggleButton.contains(event.target);
-
-    if (sidebar.classList.contains('active') && clickedOutsideSidebar && clickedOutsideButton) {
-      sidebar.classList.remove('active');
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
     }
-  });
-</script>
 
-  
+    function goToProfile() {
+      window.location.href = 'profil.html';
+    }
 
-  
+    function uploadTraining() {
+      window.location.href = 'form.html';
+    }
+
+    // Auto close sidebar saat klik di luar
+    document.addEventListener('click', function (event) {
+      const sidebar = document.getElementById('sidebar');
+      const toggleButton = document.getElementById('menu-toggle');
+      const clickedOutsideSidebar = !sidebar.contains(event.target);
+      const clickedOutsideButton = !toggleButton.contains(event.target);
+
+      if (sidebar.classList.contains('active') && clickedOutsideSidebar && clickedOutsideButton) {
+        sidebar.classList.remove('active');
+      }
+    });
+  </script>
 </head>
 
 <body>
@@ -49,29 +45,19 @@
   <!-- Sidebar -->
   <div id="sidebar" class="sidebar">
     <ul>
-      <li><a href="#"><img src="assets/home-icon.svg" class="sidebar-icon" alt="Profile Icon" />Dashboard</a></li>
+      <li><a href="#"><img src="assets/home-icon.svg" class="sidebar-icon" alt="Home Icon" />Dashboard</a></li>
       <li><a href="profil.html"><img src="assets/profil-icon.svg" class="sidebar-icon" alt="Profile Icon" />Profile</a></li>
-      <li><a href="form.html"><img src="assets/training-icon.svg" class="sidebar-icon" alt="Profile Icon" />Training Log</a></li>
-      <li><a href="#"><img src="assets/ranking-icon.svg" class="sidebar-icon" alt="Profile Icon" />Ranking</a></li>
+      <li><a href="form.html"><img src="assets/training-icon.svg" class="sidebar-icon" alt="Training Icon" />Training Log</a></li>
+      <li><a href="#"><img src="assets/ranking-icon.svg" class="sidebar-icon" alt="Ranking Icon" />Ranking</a></li>
     </ul>
-    <!-- Logout button -->
+
     <ul class="logout-list">
-      <li><a href="#" onclick="handleLogout()"><img src="assets/logout-icon.svg" class="sidebar-icon" />Log Out</a></li>
+      <li><a href="#" onclick="handleLogout()"><img src="assets/logout-icon.svg" class="sidebar-icon" alt="Logout Icon" />Log Out</a></li>
     </ul>
   </div>
 
   <!-- Main Container -->
   <div class="container">
-    <!-- Kalender -->
-    <div class="calendar-section">
-      <div class="calendar-header">
-        <span>📅 July 2025</span>
-      </div>
-      <div id="calendar" class="calendar-grid">
-        <!-- Kalender akan diisi via JS -->
-      </div>
-    </div>
-
     <!-- Statistik -->
     <div class="stats-row">
       <div class="stat-box">
@@ -79,49 +65,61 @@
           <img src="assets/stat-icon-total-workout.svg" alt="Total Workout" />
         </div>
         <div class="stat-content">
-          <div class="stat-number" id="total-workout">57</div>
+          <div class="stat-number" id="total-workout">0</div>
           <div class="stat-label">Total Workout</div>
           <div class="stat-desc">Acumulative of Activities</div>
         </div>
       </div>
+
       <div class="stat-box">
         <div class="stat-icon">
           <img src="assets/stat-icon-weekly-training.svg" alt="Weekly Training" />
         </div>
         <div class="stat-content">
-          <div class="stat-number" id="weekly-training">3</div>
+          <div class="stat-number" id="weekly-training">0</div>
           <div class="stat-label">Weekly Training</div>
           <div class="stat-desc">Training Task Available</div>
         </div>
       </div>
+
       <!-- Tombol Upload -->
-    <button class="upload-btn" onclick="uploadTraining()">+ Upload Training</button>
+      <button class="upload-btn" onclick="uploadTraining()">+ Upload Training</button>
+    </div>
+
+    <!-- Kalender -->
+    <div class="calendar-section">
+      <div class="calendar-header">
+        <span>📅 <span id="calendar-title">Loading...</span></span>
+      </div>
+      <div id="calendar" class="calendar-grid">
+        <!-- Kalender akan diisi via JS -->
+      </div>
     </div>
 
     <!-- Task List -->
     <div class="task-section">
       <h3>Training Task</h3>
       <div id="training-tasks">
-        <!-- Diisi oleh JS -->
+        <!-- Diisi oleh home.js -->
       </div>
     </div>
   </div>
 
-   <!-- Logout -->
+  <!-- Logout -->
   <script type="module">
-  import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
-  const supabase = createClient("https://uvwvnxysnyqnvchzzkjg.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV2d3ZueHlzbnlxbnZjaHp6a2pnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE5ODQ3MTEsImV4cCI6MjA2NzU2MDcxMX0.jxyo6TOoJnnkuhtc-YGjO3cMSjIoR95IUznSDjEB_ko");
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+    const supabase = createClient("https://uvwvnxysnyqnvchzzkjg.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV2d3ZueHlzbnlxbnZjaHp6a2pnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE5ODQ3MTEsImV4cCI6MjA2NzU2MDcxMX0.jxyo6TOoJnnkuhtc-YGjO3cMSjIoR95IUznSDjEB_ko"
+);
 
-  window.handleLogout = async function () {
-    const { error } = await supabase.auth.signOut();
-    if (!error) {
-      window.location.href = "index.html";
-    } else {
-      alert("Gagal logout: " + error.message);
-    }
-  };
-</script>
-  
+
+    window.handleLogout = async function () {
+      const { error } = await supabase.auth.signOut();
+      if (!error) {
+        window.location.href = "index.html";
+      } else {
+        alert("Gagal logout: " + error.message);
+      }
+    };
+  </script>
 </body>
-  
 </html>
