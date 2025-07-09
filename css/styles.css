@@ -180,6 +180,24 @@ body {
   background: #fff0e8;
 }
 
+.calendar-nav {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.calendar-nav-icon {
+  width: 24px;
+  height: 24px;
+  filter: invert(48%) sepia(92%) saturate(5623%) hue-rotate(2deg) brightness(103%) contrast(101%);
+  transition: transform 0.2s ease;
+}
+
+.calendar-nav:hover .calendar-nav-icon {
+  transform: scale(1.1);
+}
+
 /* ========== STAT BOX WRAPPER ========== */
 .stats-row {
   display: flex;
