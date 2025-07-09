@@ -4,10 +4,36 @@ const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Sidebar toggle
-const sidebar = document.getElementById("sidebar");
-document.getElementById("menu-toggle").onclick = () => {
-  sidebar.classList.toggle("active");
-};
+<script>
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('active');
+  }
+
+  function goToProfile() {
+    window.location.href = 'profile.html';
+  }
+
+  function uploadTraining() {
+    window.location.href = 'form.html';
+  }
+
+  // 💥 Klik di luar sidebar = sidebar nutup
+  document.addEventListener('click', function (event) {
+    const sidebar = document.getElementById('sidebar');
+    const menuBtn = document.getElementById('menu-toggle');
+
+    // Kalau sidebar aktif & klik bukan di sidebar atau tombol menu
+    if (
+      sidebar.classList.contains('active') &&
+      !sidebar.contains(event.target) &&
+      !menuBtn.contains(event.target)
+    ) {
+      sidebar.classList.remove('active');
+    }
+  });
+</script>
+
 
 // DOM Elements
 const userEmailText = document.getElementById("user-email");
