@@ -59,19 +59,15 @@ const generateCalendar = (latihan = [], direction = null) => {
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
   const today = new Date();
-
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const startDay = new Date(year, month, 1).getDay();
-
   const monthNames = [
     "Januari", "Februari", "Maret", "April", "Mei", "Juni",
     "Juli", "Agustus", "September", "Oktober", "November", "Desember"
   ];
   calendarTitleEl.textContent = `${monthNames[month]} ${year}`;
-
   const newGrid = document.createElement("div");
   newGrid.className = "calendar-grid calendar-slide";
-
   if (direction === "left") newGrid.classList.add("slide-left");
   else if (direction === "right") newGrid.classList.add("slide-right");
 
@@ -89,17 +85,16 @@ const generateCalendar = (latihan = [], direction = null) => {
     cell.classList.add("calendar-day");
     cell.setAttribute("data-day", d);
     cell.textContent = d;
-
     const isToday = today.getDate() === d &&
-                    today.getMonth() === month &&
-                    today.getFullYear() === year;
+      today.getMonth() === month &&
+      today.getFullYear() === year;
     if (isToday) cell.classList.add("today");
 
     const dataLatihan = latihan.find((m) => {
       const tanggal = new Date(m.tanggal);
       return tanggal.getDate() === d &&
-             tanggal.getMonth() === month &&
-             tanggal.getFullYear() === year;
+        tanggal.getMonth() === month &&
+        tanggal.getFullYear() === year;
     });
 
     if (dataLatihan && dataLatihan.training_log.length > 0) {
@@ -109,6 +104,9 @@ const generateCalendar = (latihan = [], direction = null) => {
     } else if (dataLatihan && new Date(dataLatihan.tanggal) > today) {
       cell.classList.add("blue");
     }
+
+    // Tooltip info tanggal
+    cell.title = `Tanggal: ${d} ${monthNames[month]} ${year}`;
 
     newGrid.appendChild(cell);
   }
