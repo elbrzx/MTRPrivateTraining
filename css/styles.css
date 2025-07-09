@@ -129,26 +129,29 @@ body {
 
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr)); /* FIXED */
-  gap: 8px; /* opsional, agar lebih pas di mobile */
-  margin: 0 auto; /* pusatkan di container */
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .calendar-day {
-  background: #f1f1f1;
-  aspect-ratio: 1 / 1;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-dark);
+  font-size: 0.95rem;
+  padding: 6px;
+  min-height: 42px;
+  border-radius: 10px;
+  background: #f1f1f1;
+  font-weight: 600;
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  color: var(--text-dark);
+  box-sizing: border-box;
   text-align: center;
-  box-sizing: border-box; /* pastikan padding tidak nambah ukuran */
-  padding: 4px;
-  
+  overflow: hidden;
+  line-height: 1;
 }
 
 .calendar-day.today {
@@ -173,7 +176,10 @@ body {
   color: #999;
   box-shadow: none;
   cursor: default;
+  min-height: auto;
+  padding: 4px 2px;
 }
+
 
 .calendar-nav {
   background: none;
