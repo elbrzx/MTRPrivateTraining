@@ -126,12 +126,10 @@ body {
 }
 
 /* ========== CALENDAR ========== */
+
 .calendar-section {
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  background: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  padding: 1rem;
+  overflow: visible; /* biar ga kepotong */
 }
 
 .calendar-header {
@@ -148,9 +146,9 @@ body {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 4px;
-  min-height: 200px;
-  position: relative;
-  overflow: hidden;
+  margin-top: 1rem;
+  transition: all 0.4s ease-in-out;
+  min-height: 300px; /* ganti ini sesuai kebutuhan */
 }
 
 .calendar-day {
@@ -201,13 +199,10 @@ body {
   transform: scale(1.1);
 }
 
+/* Kalendar animasi slide */
 .calendar-slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
   animation-duration: 0.4s;
-  animation-fill-mode: forwards;
+  animation-fill-mode: both;
 }
 
 .slide-left {
