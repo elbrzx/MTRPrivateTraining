@@ -147,7 +147,10 @@ body {
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
+  gap: 4px;
+  min-height: 200px;
+  position: relative;
+  overflow: hidden;
 }
 
 .calendar-day {
@@ -196,6 +199,45 @@ body {
 
 .calendar-nav:hover .calendar-nav-icon {
   transform: scale(1.1);
+}
+
+.calendar-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+.slide-left {
+  animation-name: slideLeft;
+}
+
+.slide-right {
+  animation-name: slideRight;
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100%);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
 }
 
 /* ========== STAT BOX WRAPPER ========== */
