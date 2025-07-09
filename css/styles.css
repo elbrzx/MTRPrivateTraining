@@ -25,14 +25,15 @@ body {
 }
 
 .container {
+  width: 100%;
   max-width: 480px;
   margin: auto;
   padding: 1rem;
   background: var(--white);
   min-height: 100vh;
   border-radius: 1rem 1rem 0 0;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  overflow: visible;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
 /* ========== TOPBAR & SIDEBAR ========== */
@@ -147,24 +148,23 @@ body {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 6px;
-  margin-top: 1rem;
   width: 100%;
-  max-width: 100%;
+  box-sizing: border-box;
 }
+
 
 .calendar-day {
   background: #f1f1f1;
   width: 100%;
   aspect-ratio: 1 / 1; /* tetap kotak */
   border-radius: 10px;
-  font-size: clamp(0.8rem, 2vw, 1.1rem); /* fleksibel ukurannya */
+  font-size: clamp(0.75rem, 1.5vw, 1rem);
   font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--text-dark);
-  transition: 0.2s;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .calendar-day.today {
