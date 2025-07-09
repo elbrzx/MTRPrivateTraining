@@ -17,6 +17,11 @@ body {
   color: var(--text-dark);
 }
 
+.logo {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
 .container {
   max-width: 480px;
   margin: auto;
