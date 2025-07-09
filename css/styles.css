@@ -109,7 +109,7 @@ body {
 
 .calendar-section {
   margin: 0.5rem 0 1rem;
-  padding: 0.5rem;
+  padding: 0.5rem 0.75rem;
   background: #fff;
   border-radius: 1rem;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -129,9 +129,9 @@ body {
 
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
-  justify-content: center;
+  grid-template-columns: repeat(7, minmax(0, 1fr)); /* FIXED */
+  gap: 8px; /* opsional, agar lebih pas di mobile */
+  margin: 0 auto; /* pusatkan di container */
 }
 
 .calendar-day {
@@ -146,6 +146,9 @@ body {
   color: var(--text-dark);
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   text-align: center;
+  box-sizing: border-box; /* pastikan padding tidak nambah ukuran */
+  padding: 4px;
+  
 }
 
 .calendar-day.today {
