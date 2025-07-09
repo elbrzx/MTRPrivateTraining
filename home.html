@@ -6,7 +6,6 @@
   <title>Dashboard | MTR Private Training</title>
   <link rel="stylesheet" href="css/styles.css" />
   <script type="module" src="js/home.js"></script>
-
   <script>
     function toggleSidebar() {
       document.getElementById('sidebar').classList.toggle('active');
@@ -50,7 +49,6 @@
       <li><a href="form.html"><img src="assets/training-icon.svg" class="sidebar-icon" alt="Training Icon" />Training Log</a></li>
       <li><a href="#"><img src="assets/ranking-icon.svg" class="sidebar-icon" alt="Ranking Icon" />Ranking</a></li>
     </ul>
-
     <ul class="logout-list">
       <li><a href="#" onclick="handleLogout()"><img src="assets/logout-icon.svg" class="sidebar-icon" alt="Logout Icon" />Log Out</a></li>
     </ul>
@@ -58,7 +56,7 @@
 
   <!-- Main Container -->
   <div class="container">
-     <!-- Kalender -->
+    <!-- Kalender -->
     <div class="calendar-section">
       <div class="calendar-header">
         <button id="prev-month" class="calendar-nav">
@@ -70,37 +68,38 @@
         </button>
       </div>
       <div id="calendar" class="calendar-grid">
-        <!-- Kalender akan diisi via JS -->
+        <!-- Diisi lewat JS -->
       </div>
     </div>
-  </div>
-    
+
     <!-- Statistik -->
-    <div class="container">
-      <div class="stats-row">
-        <div class="stat-box">
-          <div class="stat-icon">
-            <img src="assets/stat-icon-total-workout.svg" alt="Total Workout" />
-          </div>
-          <div class="stat-content">
-            <div class="stat-number" id="total-workout">0</div>
-            <div class="stat-label">Total Workout</div>
-            <div class="stat-desc">Acumulative of Activities</div>
-          </div>
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-icon">
+          <img src="assets/stat-icon-total-workout.svg" alt="Total Workout" />
         </div>
-        <div class="stat-box">
-          <div class="stat-icon">
-            <img src="assets/stat-icon-weekly-training.svg" alt="Weekly Training" />
-          </div>
-          <div class="stat-content">
-            <div class="stat-number" id="weekly-training">0</div>
-            <div class="stat-label">Weekly Training</div>
-            <div class="stat-desc">Training Task Available</div>
-          </div>
+        <div class="stat-content">
+          <div class="stat-number" id="total-workout">0</div>
+          <div class="stat-label">Total Workout</div>
+          <div class="stat-desc">Acumulative of Activities</div>
         </div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-icon">
+          <img src="assets/stat-icon-weekly-training.svg" alt="Weekly Training" />
+        </div>
+        <div class="stat-content">
+          <div class="stat-number" id="weekly-training">0</div>
+          <div class="stat-label">Weekly Training</div>
+          <div class="stat-desc">Training Task Available</div>
+        </div>
+      </div>
+
       <!-- Tombol Upload -->
       <button class="upload-btn" onclick="uploadTraining()">+ Upload Training</button>
     </div>
+
     <!-- Task List -->
     <div class="task-section">
       <h3>Training Task</h3>
@@ -113,9 +112,10 @@
   <!-- Logout -->
   <script type="module">
     import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
-    const supabase = createClient("https://uvwvnxysnyqnvchzzkjg.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV2d3ZueHlzbnlxbnZjaHp6a2pnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE5ODQ3MTEsImV4cCI6MjA2NzU2MDcxMX0.jxyo6TOoJnnkuhtc-YGjO3cMSjIoR95IUznSDjEB_ko"
-);
-
+    const supabase = createClient(
+      "https://uvwvnxysnyqnvchzzkjg.supabase.co",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    );
 
     window.handleLogout = async function () {
       const { error } = await supabase.auth.signOut();
