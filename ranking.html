@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ranking | MTR</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/ranking.css" />
+  <script type="module" src="js/ranking.js"></script>
+</head>
+<body>
+  <!-- Topbar -->
+  <div class="topbar">
+    <button class="menu-btn" id="menu-toggle" onclick="toggleSidebar()">☰</button>
+    <h1 onclick="window.location.href='home.html'">
+      <img src="assets/logo-mtr.svg" class="logo" alt="Logo" />
+    </h1>
+    <img src="assets/default-avatar.png" id="profile-pic" class="profile-pic" alt="Profile" onclick="window.location.href='profil.html'" />
+  </div>
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <ul>
+      <li><a href="home.html"><img src="assets/home-icon.svg" class="sidebar-icon" />Dashboard</a></li>
+      <li><a href="profil.html"><img src="assets/profil-icon.svg" class="sidebar-icon" />Profile</a></li>
+      <li><a href="form.html"><img src="assets/training-icon.svg" class="sidebar-icon" />Training Log</a></li>
+      <li><a href="ranking.html"><img src="assets/ranking-icon.svg" class="sidebar-icon" />Ranking</a></li>
+    </ul>
+    <ul class="logout-list">
+      <li><a href="#" onclick="handleLogout()"><img src="assets/logout-icon.svg" class="sidebar-icon" />Log Out</a></li>
+    </ul>
+  </div>
+
+  <!-- Konten Ranking -->
+  <div class="container">
+    <h2>🏆 Leaderboard Training</h2>
+    <div id="ranking-list">
+      <!-- JS akan isi leaderboard di sini -->
+    </div>
+  </div>
+
+  <script type="module">
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+    const supabase = createClient("https://uvwvnxysnyqnvchzzkjg.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV2d3ZueHlzbnlxbnZjaHp6a2pnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE5ODQ3MTEsImV4cCI6MjA2NzU2MDcxMX0.jxyo6TOoJnnkuhtc-YGjO3cMSjIoR95IUznSDjEB_ko");
+
+    window.handleLogout = async function () {
+      const { error } = await supabase.auth.signOut();
+      if (!error) {
+        window.location.href = "index.html";
+      }
+    };
+
+    window.toggleSidebar = function () {
+      document.getElementById('sidebar').classList.toggle('active');
+    };
+  </script>
+</body>
+</html>
