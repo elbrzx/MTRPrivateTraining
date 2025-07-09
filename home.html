@@ -1,70 +1,65 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | MTR Training</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | MTR Private Training</title>
+  <link rel="stylesheet" href="css/styles.css" />
   <script type="module" src="js/home.js"></script>
 </head>
-<body>
-  <div class="sidebar" id="sidebar">
-    <ul>
-      <li><a href="#">Profile</a></li>
-      <li><a href="#">Training Log</a></li>
-      <li><a href="#">Ranking</a></li>
-    </ul>
-  </div>
 
-  <header>
+<body>
+  <div class="topbar">
     <button class="menu-btn" onclick="toggleSidebar()">☰</button>
     <h1>Dashboard</h1>
-    <img src="assets/profile.jpg" class="profile-icon" alt="Profile">
-  </header>
+    <img src="assets/profile-icon.png" class="profile-pic" alt="Profile" onclick="goToProfile()" />
+  </div>
 
-  <main class="dashboard-container">
-    <section class="greeting">
-      <h2 id="user-greeting">Hai, Runner! 👋</h2>
-    </section>
+  <div class="container">
+    <div class="greeting">
+      <h2>Hai, <span id="username">Runner</span>! 👋</h2>
+    </div>
 
-    <section class="calendar">
-      <div class="month-label">
-        <button id="prev-month">❮</button>
-        <span id="month-year">July 2025</span>
-        <button id="next-month">❯</button>
+    <div class="calendar-section">
+      <div class="calendar-header">
+        <button class="arrow-btn">&#x276E;</button>
+        <span class="month-title">July 2025</span>
+        <button class="arrow-btn">&#x276F;</button>
       </div>
-      <div class="calendar-grid" id="calendar-grid"></div>
-    </section>
+      <div class="calendar-grid" id="calendar-grid">
+        <!-- Kalender akan diisi via JavaScript -->
+      </div>
+    </div>
 
-    <section class="stats">
+    <div class="stats-row">
       <div class="stat-box">
         <div class="stat-icon">🏃</div>
-        <div>
-          <h3 id="total-workout">0</h3>
-          <p>Total Workout</p>
+        <div class="stat-content">
+          <p class="stat-number" id="totalWorkout">0</p>
+          <p class="stat-label">Total Workout</p>
         </div>
       </div>
       <div class="stat-box">
         <div class="stat-icon">🔄</div>
-        <div>
-          <h3 id="weekly-training">0</h3>
-          <p>Weekly Training</p>
+        <div class="stat-content">
+          <p class="stat-number" id="weeklyTraining">0</p>
+          <p class="stat-label">Weekly Training</p>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section class="upload-btn-section">
-      <button id="upload-training">+ Upload Training</button>
-    </section>
+    <button class="upload-btn" onclick="uploadTraining()">+ Upload Training</button>
 
-    <section class="training-task">
+    <div class="task-section">
       <h3>Training Task</h3>
-      <div id="task-list">
-        <!-- Tasks akan dimuat di sini -->
+      <div id="training-task-list">
+        <!-- Data task diisi lewat JS -->
       </div>
-    </section>
+    </div>
 
     <button class="logout-btn" onclick="logout()">Logout</button>
-  </main>
+  </div>
 </body>
+
 </html>
