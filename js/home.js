@@ -10,7 +10,6 @@ document.getElementById("menu-toggle").onclick = () => {
 
 const userEmailText = document.getElementById("user-email");
 const userProfilePic = document.getElementById("profile-pic");
-const calendarContainer = document.getElementById("calendar");
 const totalWorkoutEl = document.getElementById("total-workout");
 const weeklyTrainingEl = document.getElementById("weekly-training");
 const trainingTasksEl = document.getElementById("training-tasks");
