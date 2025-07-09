@@ -1,55 +1,70 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard | MTR Training</title>
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/styles.css">
   <script type="module" src="js/home.js"></script>
 </head>
 <body>
   <div class="sidebar" id="sidebar">
     <ul>
-      <li><a href="#">🏠 Dashboard</a></li>
-      <li><a href="#">👤 Profile</a></li>
-      <li><a href="#">📊 Training Log</a></li>
-      <li><a href="#">🏅 Ranking</a></li>
+      <li><a href="#">Profile</a></li>
+      <li><a href="#">Training Log</a></li>
+      <li><a href="#">Ranking</a></li>
     </ul>
   </div>
 
-  <div class="main-content">
-    <header>
-      <button id="menu-toggle">☰</button>
-      <h1>Dashboard</h1>
-      <img src="assets/profile.jpg" alt="Profile" id="profile-pic" class="profile-pic" />
-    </header>
+  <header>
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    <h1>Dashboard</h1>
+    <img src="assets/profile.jpg" class="profile-icon" alt="Profile">
+  </header>
 
-    <section class="calendar-section">
-      <h2 id="user-email">Memuat data...</h2>
-      <div id="calendar"></div>
+  <main class="dashboard-container">
+    <section class="greeting">
+      <h2 id="user-greeting">Hai, Runner! 👋</h2>
+    </section>
+
+    <section class="calendar">
+      <div class="month-label">
+        <button id="prev-month">❮</button>
+        <span id="month-year">July 2025</span>
+        <button id="next-month">❯</button>
+      </div>
+      <div class="calendar-grid" id="calendar-grid"></div>
     </section>
 
     <section class="stats">
       <div class="stat-box">
-        <div class="stat-value" id="total-workout">0</div>
-        <div class="stat-label">Total Workout</div>
+        <div class="stat-icon">🏃</div>
+        <div>
+          <h3 id="total-workout">0</h3>
+          <p>Total Workout</p>
+        </div>
       </div>
       <div class="stat-box">
-        <div class="stat-value" id="weekly-training">0</div>
-        <div class="stat-label">Weekly Training</div>
+        <div class="stat-icon">🔄</div>
+        <div>
+          <h3 id="weekly-training">0</h3>
+          <p>Weekly Training</p>
+        </div>
       </div>
     </section>
 
-    <section class="upload-section">
-      <button class="upload-btn">+ Upload Training</button>
+    <section class="upload-btn-section">
+      <button id="upload-training">+ Upload Training</button>
     </section>
 
-    <section class="task-section">
+    <section class="training-task">
       <h3>Training Task</h3>
-      <div id="training-tasks"></div>
+      <div id="task-list">
+        <!-- Tasks akan dimuat di sini -->
+      </div>
     </section>
 
-    <button onclick="logout()" class="logout-btn">Logout</button>
-  </div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </main>
 </body>
 </html>
