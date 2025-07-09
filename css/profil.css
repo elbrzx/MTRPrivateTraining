@@ -1,157 +1,123 @@
+/* Base Styling */
 body {
   font-family: "Arial", sans-serif;
-  background: #f4f4f4;
+  background: #f9f9f9;
   margin: 0;
   padding: 0;
 }
 
-/* ========== TOPBAR & SIDEBAR ========== */
-.topbar {
-  background: white;
-  padding: 0.5rem 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #ddd;
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  height: auto;
-}
-
-.topbar h1 {
-  display: flex;
-  align-items: center;
-  margin: 0;
-}
-
-.menu-btn {
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  color: var(--primary-color);
-  cursor: pointer;
-}
-
-.profile-pic {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 2px solid var(--primary-color);
-  object-fit: cover;
-}
-
-/* ========== SIDEBAR NAV ========== */
-#sidebar {
-  position: fixed;
-  left: -250px;
-  top: 0;
-  bottom: 0;
-  width: 220px;
-  background-color: white;
-  border-right: 2px solid #eee;
-  padding: 2rem 1rem;
-  transition: left 0.3s ease;
-  z-index: 1000;
-}
-
-#sidebar.active {
-  left: 0;
-}
-
-#sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-#sidebar ul li {
-  margin-bottom: 1rem;
-}
-
-#sidebar ul li a {
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1rem;
-  color: var(--text-dark);
-}
-
-.sidebar-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
-  vertical-align: middle;
-}
-#sidebar ul li a {
-  display: flex;
-  align-items: center;
-}
-
-.logo {
-  width: 120px;
-  cursor: pointer;
-}
-
+/* Container Profil */
 .container {
-  max-width: 500px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 100px auto 60px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(255, 102, 0, 0.1);
   text-align: center;
+  position: relative;
 }
 
+/* Foto Profil */
 .profile-pic-section {
   position: relative;
-  margin-bottom: 1rem;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 20px;
 }
 
 .profile-pic-section img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border: 3px solid #ccc;
+  border-radius: 50%;
+  border: 5px solid orange;
+  box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
 }
 
-#upload-profile-pic {
-  margin-top: 10px;
+.profile-pic-section input[type="file"] {
+  display: none;
 }
 
+/* Icon Pensil */
+.profile-pic-section::after {
+  content: "✏️";
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: orange;
+  color: white;
+  padding: 4px 6px;
+  border-radius: 50%;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.profile-pic-section:hover::after {
+  transform: scale(1.1);
+}
+
+/* Klik icon = trigger upload */
+.profile-pic-section:hover {
+  cursor: pointer;
+}
+
+/* Info Pengguna */
 .user-info h2 {
   margin: 10px 0 5px;
+  font-size: 22px;
+  color: #333;
 }
 
 .user-info a {
-  color: #3adb35;
+  display: inline-block;
+  margin-top: 6px;
   text-decoration: none;
+  color: orange;
   font-weight: bold;
 }
 
+/* History Section */
 .history-section {
-  margin-top: 30px;
+  margin-top: 40px;
   text-align: left;
 }
 
 .history-section h3 {
+  color: #ff6600;
   margin-bottom: 10px;
+  font-size: 20px;
+  border-bottom: 2px solid orange;
+  display: inline-block;
+  padding-bottom: 4px;
 }
 
-#training-history {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
+/* Riwayat Training Cards */
 .training-card {
-  background: #f9f9f9;
-  border-left: 4px solid var(--success-color, #3adb35);
-  padding: 10px 15px;
-  border-radius: 8px;
+  background: #fef8f2;
+  border: 1px solid #ffc7a2;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
-.training-card span {
+.training-card a {
+  color: #ff6600;
   font-weight: bold;
-  color: #333;
+  text-decoration: none;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 20px;
+    margin: 80px 15px;
+  }
+
+  .profile-pic-section {
+    width: 120px;
+    height: 120px;
+  }
 }
