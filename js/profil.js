@@ -39,7 +39,10 @@ async function loadProfile() {
 
   if (profileData?.profile_url) {
     profileImgEl.src = profileData.profile_url;
-  }
+  } else {
+  // Default image if no profile pic
+  profileImgEl.src = "assets/default-avatar.png";
+}
 
   // Ambil data latihan user dari progress_latihan
   const { data: latihanList } = await supabase
