@@ -31,8 +31,8 @@ body {
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  border: 5px solid orange;
-  box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
+  border: 5px solid #ff4000;
+  box-shadow: 0 0 10px rgba(255, 64, 0, 0.3); /* rgba dari #ff4000 */
 }
 
 .profile-pic-section input[type="file"] {
