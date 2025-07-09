@@ -3,20 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Beranda | MTR Private Training</title>
+  <title>Dashboard | MTR Training</title>
   <link rel="stylesheet" href="css/styles.css" />
   <script type="module" src="js/home.js"></script>
 </head>
 <body>
-  <div class="container">
-    <div class="login-form">
-      <img src="assets/logo.png" class="logo" alt="Logo" />
-      <h2>Hai, Runner! 👋</h2>
-      <p id="user-email">Memuat data...</p>
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li onclick="navigateTo('profile')">👤 Profile</li>
+      <li onclick="navigateTo('activity')">📋 Training Log</li>
+      <li onclick="navigateTo('ranking')">🏆 Ranking</li>
+    </ul>
+  </div>
 
-      <button onclick="logout()" class="login-btn" style="margin-top: 20px;">
-        Logout
-      </button>
+  <div class="main">
+    <header>
+      <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+      <h1>Dashboard</h1>
+      <img src="assets/user.jpg" class="profile-pic" alt="User Pic" />
+    </header>
+
+    <section class="calendar-section">
+      <div class="calendar-header">
+        <button class="month-btn">&#8592;</button>
+        <span>July 2025</span>
+        <button class="month-btn">&#8594;</button>
+      </div>
+      <div class="calendar-grid" id="calendar">
+        <!-- Static calendar generated via JS -->
+      </div>
+    </section>
+
+    <section class="stats-section">
+      <div class="stat-box">
+        <div class="icon">🏃</div>
+        <div class="stat">
+          <h2 id="total-workout">0</h2>
+          <p>Total Workout</p>
+        </div>
+      </div>
+      <div class="stat-box">
+        <div class="icon">🔄</div>
+        <div class="stat">
+          <h2 id="weekly-training">0</h2>
+          <p>Weekly Training</p>
+        </div>
+      </div>
+    </section>
+
+    <button class="upload-btn" onclick="openUploadForm()">➕ Upload Training</button>
+
+    <section class="task-section">
+      <h3>Training Task</h3>
+      <div id="training-tasks">
+        <!-- Task items will be inserted here via JS -->
+      </div>
+    </section>
+  </div>
+
+  <!-- Upload Form Modal (optional, toggleable) -->
+  <div class="modal" id="uploadModal">
+    <div class="modal-content">
+      <h3>Upload Training</h3>
+      <form onsubmit="submitTraining(event)">
+        <label for="tanggal">Tanggal:</label>
+        <input type="date" id="tanggal" required>
+
+        <label for="menu_id">Menu Latihan:</label>
+        <select id="menu_id"></select>
+
+        <label for="jarak">Jarak (km):</label>
+        <input type="number" step="0.01" id="jarak" required>
+
+        <label for="waktu">Waktu (menit):</label>
+        <input type="number" id="waktu" required>
+
+        <label for="catatan">Catatan:</label>
+        <textarea id="catatan"></textarea>
+
+        <label for="link">Link Strava:</label>
+        <input type="url" id="link">
+
+        <button type="submit">Kirim</button>
+        <button type="button" onclick="closeUploadForm()">Batal</button>
+      </form>
     </div>
   </div>
 </body>
