@@ -54,7 +54,7 @@ const loadDashboardData = async (slideDirection = null) => {
   weeklyTrainingEl.textContent = latihan.length;
 };
 
-// 📅 GENERATE CALENDAR
+// 📅 GENERATE CALENDAR - Sudah Fix 💖
 const generateCalendar = (latihan = [], direction = null) => {
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
@@ -75,15 +75,20 @@ const generateCalendar = (latihan = [], direction = null) => {
   if (direction === "left") newGrid.classList.add("slide-left");
   else if (direction === "right") newGrid.classList.add("slide-right");
 
+  // Placeholder kosong untuk hari pertama
   for (let i = 0; i < startDay; i++) {
     const empty = document.createElement("div");
+    empty.classList.add("calendar-day");
+    empty.style.visibility = "hidden";
     newGrid.appendChild(empty);
   }
 
+  // Loop hari-hari di bulan ini
   for (let d = 1; d <= daysInMonth; d++) {
     const cell = document.createElement("div");
     cell.classList.add("calendar-day");
     cell.setAttribute("data-day", d);
+    cell.textContent = d;
 
     const isToday = today.getDate() === d &&
                     today.getMonth() === month &&
@@ -98,17 +103,17 @@ const generateCalendar = (latihan = [], direction = null) => {
     });
 
     if (dataLatihan && dataLatihan.training_log.length > 0) {
-  cell.classList.add("green");
-} else if (dataLatihan && new Date(dataLatihan.tanggal) < today) {
-  cell.classList.add("orange");
-} else if (dataLatihan && new Date(dataLatihan.tanggal) > today) {
-  cell.classList.add("blue");
-}
+      cell.classList.add("green");
+    } else if (dataLatihan && new Date(dataLatihan.tanggal) < today) {
+      cell.classList.add("orange");
+    } else if (dataLatihan && new Date(dataLatihan.tanggal) > today) {
+      cell.classList.add("blue");
+    }
 
     newGrid.appendChild(cell);
   }
 
-  // Ganti isi container dengan slide
+  // Ganti isi container dengan slide baru
   calendarContainer.innerHTML = "";
   calendarContainer.appendChild(newGrid);
 };
@@ -148,4 +153,3 @@ window.logout = async () => {
 
 // 🚀 INIT
 checkSession();
-
