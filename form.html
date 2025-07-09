@@ -4,11 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Upload Latihan | MTR</title>
+  <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/form.css" />
   <script type="module" src="js/form.js"></script>
 </head>
 <body>
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <button class="menu-btn" id="menu-toggle" onclick="toggleSidebar()">☰</button>
+    <h1><img src="assets/logo-mtr.svg" class="logo" alt="Logo" /></h1>
+    <img src="assets/profile-icon.png" id="profile-pic" class="profile-pic" alt="Profile" onclick="goToProfile()" />
+  </div>
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <ul>
+      <li><a href="profile.html">👤 Profile</a></li>
+      <li><a href="home.html">📋 Training Log</a></li>
+      <li><a href="#">🏆 Ranking</a></li>
+    </ul>
+  </div>
+
+  <!-- Container Form -->
   <div class="container">
+    <img src="assets/logo-mtr.svg" class="logo" alt="Logo MTR" />
     <h2>Upload Data Latihan</h2>
     <form onsubmit="return handleForm(event)">
       <div class="input-group">
@@ -18,7 +38,7 @@
 
       <div class="input-group">
         <label for="menu">Menu Latihan</label>
-        <input type="number" id="menu" placeholder="Masukkan ID menu dari database" required />
+        <input type="text" id="menu" placeholder="Contoh: Easy Run" required />
       </div>
 
       <div class="input-group">
@@ -27,12 +47,23 @@
       </div>
 
       <div class="input-group">
-        <label for="link_strava">Link Strava</label>
-        <input type="url" id="link_strava" placeholder="Opsional: https://www.strava.com/..." />
+        <label for="catatan">Link Strava (Opsional)</label>
+        <input type="url" id="catatan" placeholder="Link Strava" />
       </div>
 
-      <button type="submit" class="upload-btn">Submit Latihan</button>
+      <button type="submit" class="upload-btn">📤 Upload Latihan</button>
     </form>
   </div>
+
+  <!-- Sidebar Script -->
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+
+    function goToProfile() {
+      window.location.href = 'profile.html';
+    }
+  </script>
 </body>
 </html>
