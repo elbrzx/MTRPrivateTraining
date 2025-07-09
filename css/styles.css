@@ -149,38 +149,42 @@ body {
   border-bottom: 4px solid var(--primary-color);
 }
 
-/* ========== STAT BOX ========== */
+/* ========== STAT BOX WRAPPER ========== */
 .stats-row {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 1.2rem;
-  flex-wrap: wrap;
 }
 
+/* ========== INDIVIDUAL STAT BOX ========== */
 .stat-box {
-  flex: 1;
+  flex: 1 1 calc(50% - 0.5rem); /* 2 kolom responsif */
   background: var(--card-bg);
-  color: var(--white);
   border-radius: 20px;
-  padding: 1rem;
+  padding: 1.2rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  justify-content: space-between;
+  min-height: 100px;
+  box-sizing: border-box;
 }
 
+/* Icon di kiri */
 .stat-box .stat-icon {
-  font-size: 2.2rem;
+  font-size: 2.8rem;
   color: var(--success-color);
 }
 
+/* Text (angka + label) di kanan */
 .stat-box .stat-content {
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   justify-content: center;
-  align-items: flex-start;
 }
 
+/* Angka besar */
 .stat-box .stat-number {
   font-size: 3.2rem;
   font-weight: bold;
@@ -188,10 +192,13 @@ body {
   line-height: 1;
 }
 
+/* Label kecil */
 .stat-box .stat-label {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: bold;
   color: var(--success-color);
+  margin-top: 0.3rem;
+  text-align: right;
 }
 
 /* ========== UPLOAD BUTTON ========== */
