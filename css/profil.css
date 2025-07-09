@@ -121,3 +121,25 @@ body {
     height: 120px;
   }
 }
+
+/* === Animasi upload foto === */
+@keyframes popIn {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.3;
+    filter: brightness(1.4);
+  }
+  50% {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    filter: brightness(1);
+  }
+}
+
+.profile-pic-section img.animate-upload {
+  animation: popIn 0.5s ease-out;
+}
