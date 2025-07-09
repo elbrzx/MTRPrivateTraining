@@ -5,7 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Profil | MTR</title>
   <link rel="stylesheet" href="css/profil.css" />
+  <link rel="stylesheet" href="css/styles.css" />
   <script type="module" src="js/profil.js"></script>
+
+  <script>
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+  }
+
+  function goToProfile() {
+    window.location.href = 'profile.html';
+  }
+
+  function uploadTraining() {
+    window.location.href = 'form.html';
+  }
+
+  // ✨ Tambahan: auto close sidebar kalau klik di luar
+  document.addEventListener('click', function (event) {
+    const sidebar = document.getElementById('sidebar');
+    const toggleButton = document.getElementById('menu-toggle');
+
+    const clickedOutsideSidebar = !sidebar.contains(event.target);
+    const clickedOutsideButton = !toggleButton.contains(event.target);
+
+    if (sidebar.classList.contains('active') && clickedOutsideSidebar && clickedOutsideButton) {
+      sidebar.classList.remove('active');
+    }
+  });
+</script>
+  
 </head>
 <body>
   <!-- Topbar -->
@@ -13,6 +42,16 @@
     <h1 onclick="window.location.href='home.html'">
       <img src="assets/logo-mtr.svg" class="logo" alt="Logo" />
     </h1>
+  </div>
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <ul>
+      <li><a href="home.html"><img src="assets/home-icon.svg" class="sidebar-icon" alt="Profile Icon" />Dashboard</a></li>
+      <li><a href="#"><img src="assets/profil-icon.svg" class="sidebar-icon" alt="Profile Icon" />Profile</a></li>
+      <li><a href="form.html"><img src="assets/training-icon.svg" class="sidebar-icon" alt="Profile Icon" />Training Log</a></li>
+      <li><a href="#"><img src="assets/ranking-icon.svg" class="sidebar-icon" alt="Profile Icon" />Ranking</a></li>
+    </ul>
   </div>
 
   <div class="container">
