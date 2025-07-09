@@ -175,10 +175,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  min-width: 48px;
-  min-height: 48px;
+  width: 53px;
+  height: 53px;
+  min-width: 53px;
+  min-height: 53px;
 }
 
 .stat-icon img {
