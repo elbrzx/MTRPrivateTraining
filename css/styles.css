@@ -163,16 +163,14 @@ body {
 .calendar-day {
   background: #f1f1f1;
   width: 100%;
-  aspect-ratio: 1 / 1; /* tetap kotak */
+  padding-top: 100%; /* Untuk menjaga rasio 1:1 tanpa aspect-ratio */
+  position: relative;
   border-radius: 10px;
   font-size: clamp(0.75rem, 1.5vw, 1rem);
   font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: var(--text-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  position: relative;
+  overflow: hidden;
 }
 
 .calendar-day.today {
