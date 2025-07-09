@@ -25,11 +25,11 @@ async function loadProfile() {
   userId = user.id;
 
   // Ambil profil user dari tabel "profiles"
-  const { data: profileData } = await supabase
-    .from("profiles")
-    .select("nama, strava_url, profile_url")
-    .eq("id", userId)
-    .single();
+ const { data: profileData } = await supabase
+  .from("profiles")
+  .select("username, strava_url, profile_url")
+  .eq("id", userId)
+  .single();
 
   usernameEl.textContent = profileData?.nama || user.email;
   stravaLinkEl.href = profileData?.strava_url || "#";
