@@ -55,20 +55,21 @@ const loadDashboardData = async (slideDirection = null) => {
 };
 
 // 📅 GENERATE CALENDAR - diperbaiki + nama hari
+
 const generateCalendar = (latihan = [], direction = null) => {
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
   const today = new Date();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const startDay = (new Date(year, month, 1).getDay() + 6) % 7; // Senin = 0
+  const prevMonthDays = new Date(year, month, 0).getDate();
+  const startDay = (new Date(year, month, 1).getDay() + 6) % 7;
 
   const monthNames = [
     "Januari", "Februari", "Maret", "April", "Mei", "Juni",
     "Juli", "Agustus", "September", "Oktober", "November", "Desember"
   ];
 
-  const dayNames = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"];
-
+  const dayNames = ["S", "M", "T", "W", "T", "F", "S"];
   calendarTitleEl.textContent = `${monthNames[month]} ${year}`;
 
   const newGrid = document.createElement("div");
@@ -76,33 +77,46 @@ const generateCalendar = (latihan = [], direction = null) => {
   if (direction === "left") newGrid.classList.add("slide-left");
   else if (direction === "right") newGrid.classList.add("slide-right");
 
-  // Tambahkan nama-nama hari di atas
   dayNames.forEach(day => {
     const header = document.createElement("div");
     header.classList.add("calendar-day");
     header.textContent = day;
-    header.style.fontWeight = "bold";
+    header.style.fontWeight = "300";
     header.style.background = "transparent";
-    header.style.color = "#666";
-    header.style.cursor = "default";
+    header.style.color = "#999";
+    header.style.boxShadow = "none";
+    header.style.height = "auto";
     newGrid.appendChild(header);
   });
 
-  // Total slot untuk grid agar simetris (6 minggu × 7 hari)
-  const totalSlots = Math.ceil((startDay + daysInMonth) / 7) * 7;
+  const totalSlots = 42;
 
   for (let i = 0; i < totalSlots; i++) {
     const cell = document.createElement("div");
     cell.classList.add("calendar-day");
 
-    const dayNumber = i - startDay + 1;
+    let dayNumber, isCurrentMonth = true;
+    let renderDate;
 
-    if (i < startDay || dayNumber > daysInMonth) {
-      cell.style.visibility = "hidden";
+    if (i < startDay) {
+      dayNumber = prevMonthDays - (startDay - 1 - i);
+      isCurrentMonth = false;
+      renderDate = new Date(year, month - 1, dayNumber);
+    } else if (i >= startDay + daysInMonth) {
+      dayNumber = i - (startDay + daysInMonth) + 1;
+      isCurrentMonth = false;
+      renderDate = new Date(year, month + 1, dayNumber);
     } else {
-      cell.textContent = dayNumber;
-      cell.setAttribute("data-day", dayNumber);
+      dayNumber = i - startDay + 1;
+      renderDate = new Date(year, month, dayNumber);
+    }
 
+    cell.textContent = dayNumber;
+    cell.setAttribute("data-day", dayNumber);
+
+    if (!isCurrentMonth) {
+      cell.classList.add("dimmed");
+    } else {
       const isToday = today.getDate() === dayNumber && today.getMonth() === month && today.getFullYear() === year;
       if (isToday) cell.classList.add("today");
 
@@ -128,6 +142,7 @@ const generateCalendar = (latihan = [], direction = null) => {
   calendarContainer.innerHTML = "";
   calendarContainer.appendChild(newGrid);
 };
+
 
 // ✅ RENDER TASKS
 const renderTasks = (latihan = []) => {
