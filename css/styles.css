@@ -146,17 +146,18 @@ body {
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
+  gap: 6px;
   margin-top: 1rem;
-  transition: all 0.4s ease-in-out;
-  min-height: 300px; /* ganti ini sesuai kebutuhan */
+  width: 100%;
+  max-width: 100%;
 }
 
 .calendar-day {
   background: #f1f1f1;
-  aspect-ratio: 1 / 1; /* Bikin kotak sempurna */
+  width: 100%;
+  aspect-ratio: 1 / 1; /* tetap kotak */
   border-radius: 10px;
-  font-size: 1.1rem;
+  font-size: clamp(0.8rem, 2vw, 1.1rem); /* fleksibel ukurannya */
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -233,6 +234,17 @@ body {
   100% {
     transform: translateX(0%);
     opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar-day {
+    font-size: 0.9rem;
+    border-radius: 8px;
+  }
+
+  .calendar-grid {
+    gap: 4px;
   }
 }
 
