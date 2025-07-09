@@ -6,33 +6,7 @@
   <title>Dashboard | MTR Private Training</title>
   <link rel="stylesheet" href="css/styles.css" />
   <script type="module" src="js/home.js"></script>
-  <script>
-    function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('active');
-    }
-
-    function goToProfile() {
-      window.location.href = 'profil.html';
-    }
-
-    function uploadTraining() {
-      window.location.href = 'form.html';
-    }
-
-    // Auto close sidebar saat klik di luar
-    document.addEventListener('click', function (event) {
-      const sidebar = document.getElementById('sidebar');
-      const toggleButton = document.getElementById('menu-toggle');
-      const clickedOutsideSidebar = !sidebar.contains(event.target);
-      const clickedOutsideButton = !toggleButton.contains(event.target);
-
-      if (sidebar.classList.contains('active') && clickedOutsideSidebar && clickedOutsideButton) {
-        sidebar.classList.remove('active');
-      }
-    });
-  </script>
 </head>
-
 <body>
   <!-- Topbar -->
   <div class="topbar">
@@ -72,16 +46,16 @@
       </div>
     </div>
 
-    <!-- Statistik -->
+    <!-- Statistik + Upload -->
     <div class="stats-row">
       <div class="stat-box">
         <div class="stat-icon">
           <img src="assets/stat-icon-total-workout.svg" alt="Total Workout" />
         </div>
         <div class="stat-content">
-          <div class="stat-number" id="total-workout">0</div>
+          <div class="stat-number" id="total-workout">52</div>
           <div class="stat-label">Total Workout</div>
-          <div class="stat-desc">Acumulative of Activities</div>
+          <div class="stat-desc">accumulation of activities</div>
         </div>
       </div>
 
@@ -90,41 +64,60 @@
           <img src="assets/stat-icon-weekly-training.svg" alt="Weekly Training" />
         </div>
         <div class="stat-content">
-          <div class="stat-number" id="weekly-training">0</div>
+          <div class="stat-number" id="weekly-training">4</div>
           <div class="stat-label">Weekly Training</div>
-          <div class="stat-desc">Training Task Available</div>
+          <div class="stat-desc">Training Task</div>
         </div>
       </div>
-
-      <!-- Tombol Upload -->
-      <button class="upload-btn" onclick="uploadTraining()">+ Upload Training</button>
     </div>
+
+    <!-- Tombol Upload -->
+    <button class="upload-btn" onclick="uploadTraining()">+ Upload Training</button>
 
     <!-- Task List -->
     <div class="task-section">
       <h3>Training Task</h3>
-      <div id="training-tasks">
-        <!-- Diisi oleh home.js -->
-      </div>
+      <div class="task-item done"><span>Eazy Run Zona 2</span><a href="#">More Details ▶</a></div>
+      <div class="task-item done"><span>Long Run</span><a href="#">More Details ▶</a></div>
+      <div class="task-item missed"><span>Medium Run (Speed)</span><a href="#">More Details ▶</a></div>
+      <div class="task-item done"><span>Fartlek Run (Speed)</span><a href="#">More Details ▶</a></div>
     </div>
   </div>
 
-  <!-- Logout -->
-  <script type="module">
-    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
-    const supabase = createClient(
-      "https://uvwvnxysnyqnvchzzkjg.supabase.co",
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-    );
+  <!-- Scripts -->
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
 
-    window.handleLogout = async function () {
+    function goToProfile() {
+      window.location.href = 'profil.html';
+    }
+
+    function uploadTraining() {
+      window.location.href = 'form.html';
+    }
+
+    document.addEventListener('click', function (event) {
+      const sidebar = document.getElementById('sidebar');
+      const toggleButton = document.getElementById('menu-toggle');
+      const clickedOutsideSidebar = !sidebar.contains(event.target);
+      const clickedOutsideButton = !toggleButton.contains(event.target);
+      if (sidebar.classList.contains('active') && clickedOutsideSidebar && clickedOutsideButton) {
+        sidebar.classList.remove('active');
+      }
+    });
+
+    async function handleLogout() {
+      const { createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');
+      const supabase = createClient("https://uvwvnxysnyqnvchzzkjg.supabase.co", "...token...");
       const { error } = await supabase.auth.signOut();
       if (!error) {
         window.location.href = "index.html";
       } else {
         alert("Gagal logout: " + error.message);
       }
-    };
+    }
   </script>
 </body>
 </html>
