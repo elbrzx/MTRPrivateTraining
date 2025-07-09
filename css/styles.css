@@ -196,3 +196,12 @@ body {
 .calendar-nav:hover .calendar-nav-icon {
   transform: scale(1.1);
 }
+
+
+/* Dimmed dates from previous or next month */
+.calendar-day.dimmed {
+  color: #bbb;
+  font-size: 0.8rem;
+  background: transparent;
+  box-shadow: none;
+}
