@@ -10,84 +10,46 @@
 <body>
   <div class="sidebar" id="sidebar">
     <ul>
-      <li onclick="navigateTo('profile')">👤 Profile</li>
-      <li onclick="navigateTo('activity')">📋 Training Log</li>
-      <li onclick="navigateTo('ranking')">🏆 Ranking</li>
+      <li><a href="#">🏠 Dashboard</a></li>
+      <li><a href="#">👤 Profile</a></li>
+      <li><a href="#">📊 Training Log</a></li>
+      <li><a href="#">🏅 Ranking</a></li>
     </ul>
   </div>
 
-  <div class="main">
+  <div class="main-content">
     <header>
-      <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+      <button id="menu-toggle">☰</button>
       <h1>Dashboard</h1>
-      <img src="assets/user.jpg" class="profile-pic" alt="User Pic" />
+      <img src="assets/profile.jpg" alt="Profile" id="profile-pic" class="profile-pic" />
     </header>
 
     <section class="calendar-section">
-      <div class="calendar-header">
-        <button class="month-btn">&#8592;</button>
-        <span>July 2025</span>
-        <button class="month-btn">&#8594;</button>
+      <h2 id="user-email">Memuat data...</h2>
+      <div id="calendar"></div>
+    </section>
+
+    <section class="stats">
+      <div class="stat-box">
+        <div class="stat-value" id="total-workout">0</div>
+        <div class="stat-label">Total Workout</div>
       </div>
-      <div class="calendar-grid" id="calendar">
-        <!-- Static calendar generated via JS -->
+      <div class="stat-box">
+        <div class="stat-value" id="weekly-training">0</div>
+        <div class="stat-label">Weekly Training</div>
       </div>
     </section>
 
-    <section class="stats-section">
-      <div class="stat-box">
-        <div class="icon">🏃</div>
-        <div class="stat">
-          <h2 id="total-workout">0</h2>
-          <p>Total Workout</p>
-        </div>
-      </div>
-      <div class="stat-box">
-        <div class="icon">🔄</div>
-        <div class="stat">
-          <h2 id="weekly-training">0</h2>
-          <p>Weekly Training</p>
-        </div>
-      </div>
+    <section class="upload-section">
+      <button class="upload-btn">+ Upload Training</button>
     </section>
-
-    <button class="upload-btn" onclick="openUploadForm()">➕ Upload Training</button>
 
     <section class="task-section">
       <h3>Training Task</h3>
-      <div id="training-tasks">
-        <!-- Task items will be inserted here via JS -->
-      </div>
+      <div id="training-tasks"></div>
     </section>
-  </div>
 
-  <!-- Upload Form Modal (optional, toggleable) -->
-  <div class="modal" id="uploadModal">
-    <div class="modal-content">
-      <h3>Upload Training</h3>
-      <form onsubmit="submitTraining(event)">
-        <label for="tanggal">Tanggal:</label>
-        <input type="date" id="tanggal" required>
-
-        <label for="menu_id">Menu Latihan:</label>
-        <select id="menu_id"></select>
-
-        <label for="jarak">Jarak (km):</label>
-        <input type="number" step="0.01" id="jarak" required>
-
-        <label for="waktu">Waktu (menit):</label>
-        <input type="number" id="waktu" required>
-
-        <label for="catatan">Catatan:</label>
-        <textarea id="catatan"></textarea>
-
-        <label for="link">Link Strava:</label>
-        <input type="url" id="link">
-
-        <button type="submit">Kirim</button>
-        <button type="button" onclick="closeUploadForm()">Batal</button>
-      </form>
-    </div>
+    <button onclick="logout()" class="logout-btn">Logout</button>
   </div>
 </body>
 </html>
