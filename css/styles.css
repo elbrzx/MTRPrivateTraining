@@ -284,12 +284,6 @@ body {
   }
 }
 
-@media (max-width: 480px) {
-  .calendar-day {
-    font-size: 0.9rem;
-    border-radius: 8px;
-  }
-
 /* ========== STAT BOX WRAPPER ========== */
 .stats-row {
   display: flex;
