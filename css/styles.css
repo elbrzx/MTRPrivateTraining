@@ -43,6 +43,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 999;
+  height: auto;
 }
 
 .menu-btn {
