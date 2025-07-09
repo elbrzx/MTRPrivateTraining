@@ -89,6 +89,45 @@ const renderTasks = (latihan) => {
   });
 };
 
+// Generate Static Calendar Grid (July 2025 example)
+function generateCalendar(today = new Date()) {
+  const calendarContainer = document.getElementById("calendar");
+  const year = 2025;
+  const month = 6; // July is month index 6 (0-based)
+  const daysInMonth = 31;
+  const startDay = new Date(year, month, 1).getDay(); // 0=Sunday
+
+  calendarContainer.innerHTML = "";
+  for (let i = 0; i < startDay; i++) {
+    const empty = document.createElement("div");
+    calendarContainer.appendChild(empty);
+  }
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const day = document.createElement("div");
+    day.classList.add("calendar-day");
+    const isToday = today.getFullYear() === year &&
+      today.getMonth() === month &&
+      today.getDate() === d;
+
+    if (isToday) day.classList.add("today");
+
+    // Sample: Mark done/missed days for demo
+    if ([1, 3, 4, 7].includes(d)) {
+      day.classList.add("done");
+    } else if ([2, 6, 13].includes(d)) {
+      day.classList.add("missed");
+    }
+
+    day.textContent = d;
+    calendarContainer.appendChild(day);
+  }
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  generateCalendar();
+});
+
 window.logout = async () => {
   await supabase.auth.signOut();
   window.location.href = "index.html";
