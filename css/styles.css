@@ -7,6 +7,7 @@
   --error-color: #ff3b3b;
   --card-bg: #333;
   --white: #fff;
+  --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -26,17 +27,21 @@ body {
   border-radius: 1rem;
 }
 
-h1, h2, h3, h4, h5 {
-  margin: 0;
-  padding: 0;
-  font-weight: bold;
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--white);
+  padding: 1rem;
+  box-shadow: var(--shadow);
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 1rem;
+.menu-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  cursor: pointer;
 }
 
 .profile-pic {
@@ -47,16 +52,41 @@ header {
   object-fit: cover;
 }
 
-.welcome {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
+.greeting {
+  margin: 1rem 0;
 }
 
-.calendar {
+.greeting h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.calendar-section {
+  margin: 1rem 0;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.calendar-header .arrow-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 6px;
-  margin: 0.5rem 0 1rem;
 }
 
 .calendar-day {
@@ -65,25 +95,43 @@ header {
   text-align: center;
   border-radius: 8px;
   font-weight: 500;
+  position: relative;
 }
 .calendar-day.today {
   background: #444;
   color: white;
 }
-.calendar-day.done {
-  border-bottom: 4px solid var(--success-color);
+.calendar-day.green::after {
+  content: '';
+  width: 60%;
+  height: 4px;
+  background: var(--success-color);
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 4px;
 }
-.calendar-day.missed {
-  border-bottom: 4px solid var(--primary-color);
+.calendar-day.orange::after {
+  content: '';
+  width: 60%;
+  height: 4px;
+  background: var(--primary-color);
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 4px;
 }
 
-.stats {
+.stats-row {
   display: flex;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
   flex-wrap: wrap;
 }
-.stat-card {
+
+.stat-box {
   flex: 1;
   background: var(--card-bg);
   color: var(--success-color);
@@ -93,12 +141,25 @@ header {
   align-items: center;
   gap: 0.5rem;
   font-size: 1rem;
+  justify-content: center;
+  text-align: center;
 }
-.stat-card .icon {
+
+.stat-icon {
   font-size: 1.5rem;
 }
 
-.btn-upload {
+.stat-number {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.upload-btn {
   background: var(--primary-color);
   color: white;
   font-weight: bold;
@@ -107,16 +168,26 @@ header {
   border: none;
   border-radius: 15px;
   font-size: 1rem;
-  margin-bottom: 1.5rem;
+  margin: 1rem 0;
   cursor: pointer;
 }
 
-.section-title {
+.task-section {
+  margin-bottom: 2rem;
+}
+
+.task-section h3 {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
 }
 
-.training-task {
+#training-task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.task-item {
   background: var(--card-bg);
   color: white;
   border-radius: 15px;
@@ -124,14 +195,33 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.75rem;
+  font-size: 1rem;
 }
-.training-task .status {
+
+.task-item.done::before {
+  content: "✅";
   font-size: 1.3rem;
+  margin-right: 0.5rem;
 }
-.training-task.done .status {
-  color: var(--success-color);
+.task-item.missed::before {
+  content: "❌";
+  font-size: 1.3rem;
+  margin-right: 0.5rem;
 }
-.training-task.missed .status {
-  color: var(--error-color);
+
+.task-item a {
+  color: orange;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.logout-btn {
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  width: 100%;
+  cursor: pointer;
 }
