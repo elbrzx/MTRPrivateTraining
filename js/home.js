@@ -83,7 +83,7 @@ const generateCalendar = (latihan = [], direction = null) => {
   for (let d = 1; d <= daysInMonth; d++) {
     const cell = document.createElement("div");
     cell.classList.add("calendar-day");
-    cell.textContent = d;
+    cell.setAttribute("data-day", d);
 
     const isToday = today.getDate() === d &&
                     today.getMonth() === month &&
