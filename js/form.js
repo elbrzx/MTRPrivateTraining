@@ -26,3 +26,4 @@ async function handleForm(event) {
     window.location.href = "home.html";
   }
 }
+window.handleForm = handleForm; // biar bisa dipanggil dari onsubmit
