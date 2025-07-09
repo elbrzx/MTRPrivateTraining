@@ -173,7 +173,6 @@ body {
 /* Icon di kiri */
 .stat-box .stat-icon {
   font-size: 2.8rem;
-  color: var(--success-color);
 }
 
 /* Text (angka + label) di kanan */
