@@ -61,8 +61,12 @@
      <!-- Kalender -->
     <div class="calendar-section">
       <div class="calendar-header">
-        <span>📅 <span id="calendar-title">Loading...</span></span>
+        <button id="prev-month" class="calendar-nav">
+          <img src="assets/backward-icon.svg" alt="Prev" class="calendar-nav-icon" /></button>
+        <span><span id="calendar-title">Loading...</span></span>
+        <button id="next-month" class="calendar-nav"><img src="assets/forward-icon.svg" alt="Next" class="calendar-nav-icon" /></button>
       </div>
+
       <div id="calendar" class="calendar-grid">
         <!-- Kalender akan diisi via JS -->
       </div>
