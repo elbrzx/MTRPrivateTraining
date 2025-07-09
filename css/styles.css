@@ -213,6 +213,15 @@ body {
   text-align: right;
 }
 
+/* Label Deskripsi */
+.stat-box .stat-desc {
+  font-size: 0.70rem;
+  font-weight: light;
+  color: var(--success-color);
+  margin-top: 0.3rem;
+  text-align: right;
+}
+
 /* ========== UPLOAD BUTTON ========== */
 .upload-btn {
   background: var(--primary-color);
