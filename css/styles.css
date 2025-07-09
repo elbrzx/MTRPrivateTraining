@@ -125,4 +125,200 @@ body {
   font-weight: bold;
   margin-bottom: 1rem;
   color: var(--text-dark);
-  g
+  gap: 1rem;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.calendar-day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  padding: 6px;
+  min-height: 42px;
+  border-radius: 10px;
+  background: #f1f1f1;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  color: var(--text-dark);
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+  line-height: 1;
+}
+
+.calendar-day.today {
+  background: #444;
+  color: #fff;
+  font-weight: bold;
+}
+
+.calendar-day.green {
+  border-bottom: 4px solid var(--success-color);
+  background: #eaffec;
+}
+
+.calendar-day.orange {
+  border-bottom: 4px solid var(--primary-color);
+  background: #fff0e8;
+}
+
+.calendar-day:nth-child(-n+7) {
+  font-weight: 300;
+  background: transparent;
+  color: #999;
+  box-shadow: none;
+  cursor: default;
+  min-height: auto;
+  padding: 4px 2px;
+}
+
+.calendar-nav {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.calendar-nav-icon {
+  width: 24px;
+  height: 24px;
+  filter: invert(48%) sepia(92%) saturate(5623%) hue-rotate(2deg) brightness(103%) contrast(101%);
+  transition: transform 0.2s ease;
+}
+
+.calendar-nav:hover .calendar-nav-icon {
+  transform: scale(1.1);
+}
+
+.stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.stat-box {
+  flex: 1 1 calc(50% - 0.5rem);
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100px;
+  box-sizing: border-box;
+}
+
+.stat-icon {
+  width: 53px;
+  height: 53px;
+  min-width: 53px;
+  min-height: 53px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.stat-number {
+  font-size: 3.2rem;
+  font-weight: bold;
+  color: var(--success-color);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: var(--white);
+  margin-top: 0.3rem;
+  text-align: right;
+}
+
+.stat-desc {
+  font-size: 0.70rem;
+  font-weight: normal;
+  color: var(--success-color);
+  text-align: right;
+}
+
+.upload-btn {
+  background: var(--primary-color);
+  color: white;
+  font-weight: bold;
+  padding: 1.1rem;
+  width: 100%;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+}
+
+.task-section h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+}
+
+.task-item {
+  background: var(--card-bg);
+  color: white;
+  border-radius: 15px;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.task-item.done span::before {
+  content: "✅ ";
+  color: var(--success-color);
+}
+
+.task-item.missed span::before {
+  content: "❌ ";
+  color: var(--error-color);
+}
+
+.task-item a {
+  color: #ffb84d;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.logout-btn {
+  margin-top: 1.5rem;
+  background: white;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  font-weight: bold;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+}
