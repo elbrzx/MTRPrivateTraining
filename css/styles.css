@@ -25,15 +25,13 @@ body {
 }
 
 .container {
-  width: 100%;
   max-width: 480px;
   margin: auto;
   padding: 1rem;
   background: var(--white);
   min-height: 100vh;
   border-radius: 1rem 1rem 0 0;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 /* ========== TOPBAR & SIDEBAR ========== */
@@ -128,15 +126,12 @@ body {
 }
 
 /* ========== CALENDAR ========== */
-
 .calendar-section {
-  margin: 2rem 0;
-  padding: 1rem;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
   background: #fff;
   border-radius: 1rem;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  overflow: visible; /* biar grid dan animasi nggak kepotong */
-  min-height: 400px;
 }
 
 .calendar-header {
@@ -152,38 +147,21 @@ body {
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 6px;
-  width: 100%;
-  box-sizing: border-box;
-  min-height: 330px;
-  transition: all 0.4s ease-in-out;
-  overflow: visible;
+  gap: 10px;
 }
 
 .calendar-day {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
   background: #f1f1f1;
+  aspect-ratio: 1 / 1; /* Bikin kotak sempurna */
   border-radius: 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  font-size: 1.1rem;
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(0.85rem, 1.5vw, 1.1rem);
-  font-weight: 600;
   color: var(--text-dark);
-}
-
-
-/* Isi konten tanggal */
-.calendar-day::before {
-  content: attr(data-day);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
+  transition: 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .calendar-day.today {
@@ -192,36 +170,14 @@ body {
   font-weight: bold;
 }
 
-/* Dot indikator */
-.calendar-day.green::after,
-.calendar-day.orange::after,
-.calendar-day.blue::after {
-  content: "";
-  position: absolute;
-  bottom: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+.calendar-day.green {
+  border-bottom: 4px solid var(--success-color);
+  background: #eaffec;
 }
 
-.calendar-day.green::after {
-  background-color: #3adb35;
-}
-
-.calendar-day.orange::after {
-  background-color: #ff4000;
-}
-
-.calendar-day.blue::after {
-  background-color: #0055ff;
-}
-
-/* Hari Minggu */
-.calendar-day:nth-child(7n) {
-  color: red;
-  font-weight: bold;
+.calendar-day.orange {
+  border-bottom: 4px solid var(--primary-color);
+  background: #fff0e8;
 }
 
 .calendar-nav {
@@ -240,42 +196,6 @@ body {
 
 .calendar-nav:hover .calendar-nav-icon {
   transform: scale(1.1);
-}
-
-/* Kalendar animasi slide */
-.calendar-slide {
-  animation-duration: 0.4s;
-  animation-fill-mode: both;
-}
-
-.slide-left {
-  animation-name: slideLeft;
-}
-
-.slide-right {
-  animation-name: slideRight;
-}
-
-@keyframes slideLeft {
-  0% {
-    transform: translateX(100%);
-    opacity: 0.3;
-  }
-  100% {
-    transform: translateX(0%);
-    opacity: 1;
-  }
-}
-
-@keyframes slideRight {
-  0% {
-    transform: translateX(-100%);
-    opacity: 0.3;
-  }
-  100% {
-    transform: translateX(0%);
-    opacity: 1;
-  }
 }
 
 /* ========== STAT BOX WRAPPER ========== */
