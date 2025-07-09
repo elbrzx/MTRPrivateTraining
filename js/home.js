@@ -113,12 +113,11 @@ function generateCalendar(today = new Date()) {
     if (isToday) day.classList.add("today");
 
     // Sample: Mark done/missed days for demo
-    if ([1, 3, 4, 7].includes(d)) {
-      day.classList.add("done");
-    } else if ([2, 6, 13].includes(d)) {
-      day.classList.add("missed");
-    }
-
+   if ([1, 3, 4, 7].includes(d)) {
+  day.classList.add("green");
+} else if ([2, 6, 13].includes(d)) {
+  day.classList.add("orange");
+}
     day.textContent = d;
     calendarContainer.appendChild(day);
   }
