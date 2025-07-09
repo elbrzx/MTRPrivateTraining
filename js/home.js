@@ -98,10 +98,12 @@ const generateCalendar = (latihan = [], direction = null) => {
     });
 
     if (dataLatihan && dataLatihan.training_log.length > 0) {
-      cell.classList.add("green");
-    } else if (dataLatihan) {
-      cell.classList.add("orange");
-    }
+  cell.classList.add("green");
+} else if (dataLatihan && new Date(dataLatihan.tanggal) < today) {
+  cell.classList.add("orange");
+} else if (dataLatihan && new Date(dataLatihan.tanggal) > today) {
+  cell.classList.add("blue");
+}
 
     newGrid.appendChild(cell);
   }
