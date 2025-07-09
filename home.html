@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,55 +10,67 @@
 
 <body>
   <div class="topbar">
-    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    <button class="menu-btn" id="menu-toggle">☰</button>
     <h1>Dashboard</h1>
-    <img src="assets/profile-icon.png" class="profile-pic" alt="Profile" onclick="goToProfile()" />
+    <img src="assets/profile-icon.png" id="profile-pic" class="profile-pic" alt="Profile" />
   </div>
 
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <ul>
+      <li><a href="#">👤 Profile</a></li>
+      <li><a href="#">📋 Training Log</a></li>
+      <li><a href="#">🏆 Ranking</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Container -->
   <div class="container">
     <div class="greeting">
-      <h2>Hai, <span id="username">Runner</span>! 👋</h2>
+      <h2><span id="user-email">Hai, Runner!</span> 👋</h2>
     </div>
 
-    <div class="calendar-section">
+    <!-- Kalender -->
+    <div class="calendar-wrapper">
       <div class="calendar-header">
-        <button class="arrow-btn">&#x276E;</button>
-        <span class="month-title">July 2025</span>
-        <button class="arrow-btn">&#x276F;</button>
+        <span>📅 July 2025</span>
       </div>
-      <div class="calendar-grid" id="calendar-grid">
-        <!-- Kalender akan diisi via JavaScript -->
+      <div id="calendar" class="calendar-grid">
+        <!-- Kalender akan diisi dari JS -->
       </div>
     </div>
 
-    <div class="stats-row">
-      <div class="stat-box">
+    <!-- Statistik -->
+    <div class="stats">
+      <div class="stat-card">
         <div class="stat-icon">🏃</div>
-        <div class="stat-content">
-          <p class="stat-number" id="totalWorkout">0</p>
-          <p class="stat-label">Total Workout</p>
+        <div>
+          <h3 id="total-workout">0</h3>
+          <p>Total Workout</p>
         </div>
       </div>
-      <div class="stat-box">
+      <div class="stat-card">
         <div class="stat-icon">🔄</div>
-        <div class="stat-content">
-          <p class="stat-number" id="weeklyTraining">0</p>
-          <p class="stat-label">Weekly Training</p>
+        <div>
+          <h3 id="weekly-training">0</h3>
+          <p>Weekly Training</p>
         </div>
       </div>
     </div>
 
+    <!-- Tombol Upload -->
     <button class="upload-btn" onclick="uploadTraining()">+ Upload Training</button>
 
+    <!-- Task List -->
     <div class="task-section">
       <h3>Training Task</h3>
-      <div id="training-task-list">
-        <!-- Data task diisi lewat JS -->
+      <div id="training-tasks">
+        <!-- Diisi oleh JS -->
       </div>
     </div>
 
+    <!-- Logout -->
     <button class="logout-btn" onclick="logout()">Logout</button>
   </div>
 </body>
-
 </html>
