@@ -162,8 +162,6 @@ body {
 
 .calendar-day {
   background: #f1f1f1;
-  width: 100%;
-  padding-top: 100%; /* Untuk menjaga rasio 1:1 tanpa aspect-ratio */
   position: relative;
   border-radius: 10px;
   font-size: clamp(0.75rem, 1.5vw, 1rem);
@@ -171,7 +169,12 @@ body {
   color: var(--text-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   overflow: hidden;
+  aspect-ratio: 1 / 1; /* Biar kotak sempurna */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 
 /* Isi konten tanggal */
 .calendar-day::before {
