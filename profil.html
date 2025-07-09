@@ -9,51 +9,52 @@
   <script type="module" src="js/profil.js"></script>
 
   <script>
-  function toggleSidebar() {
-    document.getElementById('sidebar').classList.toggle('active');
-  }
-
-  function goToProfile() {
-    window.location.href = 'profil.html';
-  }
-
-  function uploadTraining() {
-    window.location.href = 'form.html';
-  }
-
-  // ✨ Tambahan: auto close sidebar kalau klik di luar
-  document.addEventListener('click', function (event) {
-    const sidebar = document.getElementById('sidebar');
-    const toggleButton = document.getElementById('menu-toggle');
-
-    const clickedOutsideSidebar = !sidebar.contains(event.target);
-    const clickedOutsideButton = !toggleButton.contains(event.target);
-
-    if (sidebar.classList.contains('active') && clickedOutsideSidebar && clickedOutsideButton) {
-      sidebar.classList.remove('active');
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
     }
-  });
-</script>
-  
+
+    function goToProfile() {
+      window.location.href = 'profil.html';
+    }
+
+    function uploadTraining() {
+      window.location.href = 'form.html';
+    }
+
+    // ✨ Auto close sidebar saat klik di luar
+    document.addEventListener('click', function (event) {
+      const sidebar = document.getElementById('sidebar');
+      const toggleButton = document.getElementById('menu-toggle');
+      const clickedOutsideSidebar = !sidebar.contains(event.target);
+      const clickedOutsideButton = !toggleButton.contains(event.target);
+      if (sidebar.classList.contains('active') && clickedOutsideSidebar && clickedOutsideButton) {
+        sidebar.classList.remove('active');
+      }
+    });
+  </script>
 </head>
 <body>
+
   <!-- Topbar -->
   <div class="topbar">
+    <button class="menu-btn" id="menu-toggle" onclick="toggleSidebar()">☰</button>
     <h1 onclick="window.location.href='home.html'">
       <img src="assets/logo-mtr.svg" class="logo" alt="Logo" />
     </h1>
+    <img src="assets/profile-icon.png" id="profile-pic" class="profile-pic" alt="Profile" onclick="goToProfile()" />
   </div>
 
   <!-- Sidebar -->
   <div id="sidebar" class="sidebar">
     <ul>
-      <li><a href="home.html"><img src="assets/home-icon.svg" class="sidebar-icon" alt="Profile Icon" />Dashboard</a></li>
-      <li><a href="#"><img src="assets/profil-icon.svg" class="sidebar-icon" alt="Profile Icon" />Profile</a></li>
-      <li><a href="form.html"><img src="assets/training-icon.svg" class="sidebar-icon" alt="Profile Icon" />Training Log</a></li>
-      <li><a href="#"><img src="assets/ranking-icon.svg" class="sidebar-icon" alt="Profile Icon" />Ranking</a></li>
+      <li><a href="home.html"><img src="assets/home-icon.svg" class="sidebar-icon" alt="Home Icon" />Dashboard</a></li>
+      <li><a href="profil.html"><img src="assets/profil-icon.svg" class="sidebar-icon" alt="Profile Icon" />Profile</a></li>
+      <li><a href="form.html"><img src="assets/training-icon.svg" class="sidebar-icon" alt="Training Icon" />Training Log</a></li>
+      <li><a href="#"><img src="assets/ranking-icon.svg" class="sidebar-icon" alt="Ranking Icon" />Ranking</a></li>
     </ul>
   </div>
 
+  <!-- Konten Profil -->
   <div class="container">
     <!-- Foto Profil -->
     <div class="profile-pic-section">
@@ -64,16 +65,17 @@
     <!-- Info Pengguna -->
     <div class="user-info">
       <h2 id="username">Nama Pengguna</h2>
-      <a href="#" id="strava-link" target="_blank">🌐 View my Strave</a>
+      <a href="#" id="strava-link" target="_blank">🌐 Lihat Profil Strava</a>
     </div>
 
     <!-- Riwayat Latihan -->
     <div class="history-section">
       <h3>History Latihan</h3>
       <div id="training-history">
-        <!-- Diisi oleh JS -->
+        <!-- Akan diisi oleh JS -->
       </div>
     </div>
   </div>
+
 </body>
 </html>
