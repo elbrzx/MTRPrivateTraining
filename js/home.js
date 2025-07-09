@@ -58,22 +58,6 @@ const loadDashboardData = async () => {
   renderTasks(latihan);
 };
 
-const generateCalendar = (latihan) => {
-  const daysInMonth = 31;
-  const today = new Date().getDate();
-  let html = '<div class="calendar-grid">';
-  for (let i = 1; i <= daysInMonth; i++) {
-    const dayData = latihan.find((m) => new Date(m.tanggal).getDate() === i);
-    let className = "calendar-day";
-    if (i === today) className += " today";
-    if (dayData && dayData.training_log.length > 0) className += " green";
-    else if (dayData) className += " orange";
-    html += `<div class="${className}">${i}</div>`;
-  }
-  html += "</div>";
-  calendarContainer.innerHTML = html;
-};
-
 const renderTasks = (latihan) => {
   trainingTasksEl.innerHTML = "";
   latihan.forEach((item) => {
