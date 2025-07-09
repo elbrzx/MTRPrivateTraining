@@ -54,18 +54,21 @@ const loadDashboardData = async (slideDirection = null) => {
   weeklyTrainingEl.textContent = latihan.length;
 };
 
-// 📅 GENERATE CALENDAR - diperbaiki
+// 📅 GENERATE CALENDAR - diperbaiki + nama hari
 const generateCalendar = (latihan = [], direction = null) => {
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
   const today = new Date();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const startDay = (new Date(year, month, 1).getDay() + 6) % 7; // Mulai dari Senin
+  const startDay = (new Date(year, month, 1).getDay() + 6) % 7; // Senin = 0
 
   const monthNames = [
     "Januari", "Februari", "Maret", "April", "Mei", "Juni",
     "Juli", "Agustus", "September", "Oktober", "November", "Desember"
   ];
+
+  const dayNames = ["S", "M", "T", "W", "T", "F", "S"]; // Short format
+
   calendarTitleEl.textContent = `${monthNames[month]} ${year}`;
 
   const newGrid = document.createElement("div");
@@ -73,7 +76,19 @@ const generateCalendar = (latihan = [], direction = null) => {
   if (direction === "left") newGrid.classList.add("slide-left");
   else if (direction === "right") newGrid.classList.add("slide-right");
 
-  // Jumlah slot total harus 42 (6 minggu x 7 hari)
+  // Tambahkan nama-nama hari di atas
+  dayNames.forEach(day => {
+    const header = document.createElement("div");
+    header.classList.add("calendar-day");
+    header.textContent = day;
+    header.style.fontWeight = "bold";
+    header.style.background = "transparent";
+    header.style.color = "#666";
+    header.style.cursor = "default";
+    newGrid.appendChild(header);
+  });
+
+  // Total slot untuk grid agar simetris (6 minggu × 7 hari)
   const totalSlots = Math.ceil((startDay + daysInMonth) / 7) * 7;
 
   for (let i = 0; i < totalSlots; i++) {
@@ -87,6 +102,7 @@ const generateCalendar = (latihan = [], direction = null) => {
     } else {
       cell.textContent = dayNumber;
       cell.setAttribute("data-day", dayNumber);
+
       const isToday = today.getDate() === dayNumber && today.getMonth() === month && today.getFullYear() === year;
       if (isToday) cell.classList.add("today");
 
