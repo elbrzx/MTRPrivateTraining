@@ -155,24 +155,24 @@ body {
   gap: 6px;
   width: 100%;
   box-sizing: border-box;
-  min-height: 330px; /* Biar aman sampe 6 minggu */
+  min-height: 330px;
   transition: all 0.4s ease-in-out;
   overflow: visible;
 }
 
 .calendar-day {
-  background: #f1f1f1;
   position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #f1f1f1;
   border-radius: 10px;
-  font-size: clamp(0.75rem, 1.5vw, 1rem);
-  font-weight: 600;
-  color: var(--text-dark);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-  aspect-ratio: 1 / 1; /* Biar kotak sempurna */
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+  font-weight: 600;
+  color: var(--text-dark);
 }
 
 
@@ -183,7 +183,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 2;
+  z-index: 1;
 }
 
 .calendar-day.today {
@@ -192,30 +192,9 @@ body {
   font-weight: bold;
 }
 
-.calendar-day.green::after {
-  content: "";
-  position: absolute;
-  bottom: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 8px;
-  height: 8px;
-  background-color: #3adb35;
-  border-radius: 50%;
-}
-
-.calendar-day.orange::after {
-  content: "";
-  position: absolute;
-  bottom: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 8px;
-  height: 8px;
-  background-color: #ff4000;
-  border-radius: 50%;
-}
-
+/* Dot indikator */
+.calendar-day.green::after,
+.calendar-day.orange::after,
 .calendar-day.blue::after {
   content: "";
   position: absolute;
@@ -224,10 +203,22 @@ body {
   transform: translateX(-50%);
   width: 8px;
   height: 8px;
-  background-color: #0055ff;
   border-radius: 50%;
 }
 
+.calendar-day.green::after {
+  background-color: #3adb35;
+}
+
+.calendar-day.orange::after {
+  background-color: #ff4000;
+}
+
+.calendar-day.blue::after {
+  background-color: #0055ff;
+}
+
+/* Hari Minggu */
 .calendar-day:nth-child(7n) {
   color: red;
   font-weight: bold;
