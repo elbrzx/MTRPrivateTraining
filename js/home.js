@@ -54,64 +54,61 @@ const loadDashboardData = async (slideDirection = null) => {
   weeklyTrainingEl.textContent = latihan.length;
 };
 
-// 📅 GENERATE CALENDAR - Sudah Fix 💖
+// 📅 GENERATE CALENDAR - diperbaiki
 const generateCalendar = (latihan = [], direction = null) => {
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
   const today = new Date();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const startDay = new Date(year, month, 1).getDay();
+  const startDay = (new Date(year, month, 1).getDay() + 6) % 7; // Mulai dari Senin
+
   const monthNames = [
     "Januari", "Februari", "Maret", "April", "Mei", "Juni",
     "Juli", "Agustus", "September", "Oktober", "November", "Desember"
   ];
   calendarTitleEl.textContent = `${monthNames[month]} ${year}`;
+
   const newGrid = document.createElement("div");
   newGrid.className = "calendar-grid calendar-slide";
   if (direction === "left") newGrid.classList.add("slide-left");
   else if (direction === "right") newGrid.classList.add("slide-right");
 
-  // Placeholder kosong untuk hari pertama
-  for (let i = 0; i < startDay; i++) {
-    const empty = document.createElement("div");
-    empty.classList.add("calendar-day");
-    empty.style.visibility = "hidden";
-    newGrid.appendChild(empty);
-  }
+  // Jumlah slot total harus 42 (6 minggu x 7 hari)
+  const totalSlots = Math.ceil((startDay + daysInMonth) / 7) * 7;
 
-  // Loop hari-hari di bulan ini
-  for (let d = 1; d <= daysInMonth; d++) {
+  for (let i = 0; i < totalSlots; i++) {
     const cell = document.createElement("div");
     cell.classList.add("calendar-day");
-    cell.setAttribute("data-day", d);
-    cell.textContent = d;
-    const isToday = today.getDate() === d &&
-      today.getMonth() === month &&
-      today.getFullYear() === year;
-    if (isToday) cell.classList.add("today");
 
-    const dataLatihan = latihan.find((m) => {
-      const tanggal = new Date(m.tanggal);
-      return tanggal.getDate() === d &&
-        tanggal.getMonth() === month &&
-        tanggal.getFullYear() === year;
-    });
+    const dayNumber = i - startDay + 1;
 
-    if (dataLatihan && dataLatihan.training_log.length > 0) {
-      cell.classList.add("green");
-    } else if (dataLatihan && new Date(dataLatihan.tanggal) < today) {
-      cell.classList.add("orange");
-    } else if (dataLatihan && new Date(dataLatihan.tanggal) > today) {
-      cell.classList.add("blue");
+    if (i < startDay || dayNumber > daysInMonth) {
+      cell.style.visibility = "hidden";
+    } else {
+      cell.textContent = dayNumber;
+      cell.setAttribute("data-day", dayNumber);
+      const isToday = today.getDate() === dayNumber && today.getMonth() === month && today.getFullYear() === year;
+      if (isToday) cell.classList.add("today");
+
+      const dataLatihan = latihan.find((m) => {
+        const tanggal = new Date(m.tanggal);
+        return tanggal.getDate() === dayNumber && tanggal.getMonth() === month && tanggal.getFullYear() === year;
+      });
+
+      if (dataLatihan && dataLatihan.training_log.length > 0) {
+        cell.classList.add("green");
+      } else if (dataLatihan && new Date(dataLatihan.tanggal) < today) {
+        cell.classList.add("orange");
+      } else if (dataLatihan && new Date(dataLatihan.tanggal) > today) {
+        cell.classList.add("blue");
+      }
+
+      cell.title = `Tanggal: ${dayNumber} ${monthNames[month]} ${year}`;
     }
-
-    // Tooltip info tanggal
-    cell.title = `Tanggal: ${d} ${monthNames[month]} ${year}`;
 
     newGrid.appendChild(cell);
   }
 
-  // Ganti isi container dengan slide baru
   calendarContainer.innerHTML = "";
   calendarContainer.appendChild(newGrid);
 };
