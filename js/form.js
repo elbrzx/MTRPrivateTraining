@@ -23,6 +23,6 @@ async function handleForm(event) {
     alert("Gagal simpan data: " + error.message);
   } else {
     alert("Data latihan berhasil disimpan!");
-    window.location.href = "dashboard.html";
+    window.location.href = "home.html";
   }
 }
