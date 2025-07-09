@@ -3,11 +3,13 @@ const supabaseUrl = 'https://uvwvnxysnyqnvchzzkjg.supabase.co';
 const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV2d3ZueHlzbnlxbnZjaHp6a2pnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE5ODQ3MTEsImV4cCI6MjA2NzU2MDcxMX0.jxyo6TOoJnnkuhtc-YGjO3cMSjIoR95IUznSDjEB_ko';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+// Sidebar toggle
 const sidebar = document.getElementById("sidebar");
 document.getElementById("menu-toggle").onclick = () => {
   sidebar.classList.toggle("active");
 };
 
+// DOM Elements
 const userEmailText = document.getElementById("user-email");
 const userProfilePic = document.getElementById("profile-pic");
 const totalWorkoutEl = document.getElementById("total-workout");
@@ -16,12 +18,9 @@ const trainingTasksEl = document.getElementById("training-tasks");
 
 let currentUserId = null;
 
+// Session check
 const checkSession = async () => {
-  const {
-    data: { session },
-    error,
-  } = await supabase.auth.getSession();
-
+  const { data: { session }, error } = await supabase.auth.getSession();
   if (!session || error) {
     window.location.href = "index.html";
     return;
@@ -29,11 +28,12 @@ const checkSession = async () => {
 
   const user = session.user;
   currentUserId = user.id;
-  userEmailText.textContent = `Hai, ${user.email}! 👋`;
+  if (userEmailText) userEmailText.textContent = `Hai, ${user.email}! 👋`;
 
   loadDashboardData();
 };
 
+// Load dashboard data
 const loadDashboardData = async () => {
   const today = new Date();
   const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
@@ -57,6 +57,46 @@ const loadDashboardData = async () => {
   renderTasks(latihan);
 };
 
+// 🗓 Generate calendar
+const generateCalendar = (latihan = [], today = new Date()) => {
+  const calendarContainer = document.getElementById("calendar");
+  const year = 2025;
+  const month = 6; // July = 6 (0-based index)
+  const daysInMonth = 31;
+  const startDay = new Date(year, month, 1).getDay(); // 0 = Sunday
+
+  if (!calendarContainer) return;
+  calendarContainer.innerHTML = "";
+
+  for (let i = 0; i < startDay; i++) {
+    const empty = document.createElement("div");
+    calendarContainer.appendChild(empty);
+  }
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const day = document.createElement("div");
+    day.classList.add("calendar-day");
+
+    const isToday = today.getFullYear() === year &&
+                    today.getMonth() === month &&
+                    today.getDate() === d;
+    if (isToday) day.classList.add("today");
+
+    // Cek latihan untuk tanggal ini
+    const latihanData = latihan.find((m) => new Date(m.tanggal).getDate() === d);
+
+    if (latihanData && latihanData.training_log?.length > 0) {
+      day.classList.add("green");
+    } else if (latihanData) {
+      day.classList.add("orange");
+    }
+
+    day.textContent = d;
+    calendarContainer.appendChild(day);
+  }
+};
+
+// Render tasks
 const renderTasks = (latihan) => {
   trainingTasksEl.innerHTML = "";
   latihan.forEach((item) => {
@@ -72,47 +112,11 @@ const renderTasks = (latihan) => {
   });
 };
 
-// Generate Static Calendar Grid (July 2025 example)
-function generateCalendar(today = new Date()) {
-  const calendarContainer = document.getElementById("calendar");
-  const year = 2025;
-  const month = 6; // July is month index 6 (0-based)
-  const daysInMonth = 31;
-  const startDay = new Date(year, month, 1).getDay(); // 0=Sunday
-
-  calendarContainer.innerHTML = "";
-  for (let i = 0; i < startDay; i++) {
-    const empty = document.createElement("div");
-    calendarContainer.appendChild(empty);
-  }
-
-  for (let d = 1; d <= daysInMonth; d++) {
-    const day = document.createElement("div");
-    day.classList.add("calendar-day");
-    const isToday = today.getFullYear() === year &&
-      today.getMonth() === month &&
-      today.getDate() === d;
-
-    if (isToday) day.classList.add("today");
-
-    // Sample: Mark done/missed days for demo
-   if ([1, 3, 4, 7].includes(d)) {
-  day.classList.add("green");
-} else if ([2, 6, 13].includes(d)) {
-  day.classList.add("orange");
-}
-    day.textContent = d;
-    calendarContainer.appendChild(day);
-  }
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-  generateCalendar();
-});
-
+// Logout
 window.logout = async () => {
   await supabase.auth.signOut();
   window.location.href = "index.html";
 };
 
+// Init
 checkSession();
