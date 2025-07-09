@@ -135,7 +135,8 @@ body {
   background: #fff;
   border-radius: 1rem;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  overflow: visible; /* biar ga kepotong */
+  overflow: visible; /* biar grid dan animasi nggak kepotong */
+  min-height: 400px;
 }
 
 .calendar-header {
@@ -154,8 +155,10 @@ body {
   gap: 6px;
   width: 100%;
   box-sizing: border-box;
+  min-height: 330px; /* Biar aman sampe 6 minggu */
+  transition: all 0.4s ease-in-out;
+  overflow: visible;
 }
-
 
 .calendar-day {
   background: #f1f1f1;
@@ -212,6 +215,11 @@ body {
   height: 8px;
   background-color: #0055ff;
   border-radius: 50%;
+}
+
+.calendar-day:nth-child(7n) {
+  color: red;
+  font-weight: bold;
 }
 
 .calendar-nav {
