@@ -9,14 +9,15 @@ const stravaLinkEl = document.getElementById("strava-link");
 const trainingHistoryEl = document.getElementById("training-history");
 const profileImgEl = document.getElementById("profile-image");
 const uploadInput = document.getElementById("upload-profile-pic");
+const editIcon = document.querySelector('.edit-icon');
 
 let userId = null;
 
-// === Ambil Data User & History ===
+// === Ambil data user & profile ===
 async function loadProfile() {
   const { data: { session }, error } = await supabase.auth.getSession();
   if (error || !session) {
-    alert("Silakan login terlebih dahulu!");
+    alert("Silakan login dulu yaa!");
     window.location.href = "index.html";
     return;
   }
@@ -24,27 +25,26 @@ async function loadProfile() {
   const user = session.user;
   userId = user.id;
 
-  // Ambil profil user dari tabel "profiles"
- const { data: profileData } = await supabase
-  .from("profiles")
-  .select("username, strava_url, profile_url")
-  .eq("id", userId)
-  .single();
+  const { data: profileData } = await supabase
+    .from("profiles")
+    .select("username, strava_url, profile_url")
+    .eq("id", userId)
+    .single();
 
-  usernameEl.textContent = profileData?.nama || user.email;
+  usernameEl.textContent = profileData?.username || user.email;
   stravaLinkEl.href = profileData?.strava_url || "#";
   stravaLinkEl.textContent = profileData?.strava_url
     ? "🌐 Lihat Profil Strava"
     : "⚠️ Strava belum ditautkan";
 
+  // Tampilkan avatar default jika belum upload
   if (profileData?.profile_url) {
     profileImgEl.src = profileData.profile_url;
   } else {
-  // Default image if no profile pic
-  profileImgEl.src = "assets/default-avatar.png";
-}
+    profileImgEl.src = "assets/default-avatar.png";
+  }
 
-  // Ambil data latihan user dari progress_latihan
+  // History latihan
   const { data: latihanList } = await supabase
     .from("progress_latihan")
     .select("*")
@@ -54,55 +54,38 @@ async function loadProfile() {
   renderTrainingHistory(latihanList);
 }
 
-// === Tampilkan Riwayat Latihan ===
-function renderTrainingHistory(data = []) {
-  if (!data.length) {
-    trainingHistoryEl.innerHTML = "<p>Belum ada data latihan 🥲</p>";
-    return;
-  }
-
-  trainingHistoryEl.innerHTML = "";
-
-  data.forEach((item) => {
-    const card = document.createElement("div");
-    card.className = "training-card";
-    card.innerHTML = `
-      <div><span>${item.tanggal}</span> - ${item.menu_id}</div>
-      <div>Jarak: ${item.jarak_km} km</div>
-      ${item.link_strava ? `<a href="${item.link_strava}" target="_blank">📍 Lihat di Strava</a>` : ""}
-    `;
-    trainingHistoryEl.appendChild(card);
-  });
-}
-
 // === Upload Foto Profil ===
 uploadInput.addEventListener("change", async (event) => {
   const file = event.target.files[0];
   if (!file || !userId) return;
 
-  const filePath = `profile-pics/${userId}-${Date.now()}.${file.name.split('.').pop()}`;
+  const ext = file.name.split('.').pop();
+  const filePath = `profile-pics/${userId}.${ext}`;
 
   const { error: uploadError } = await supabase.storage
     .from("avatars")
-    .upload(filePath, file, { cacheControl: "3600", upsert: true });
+    .upload(filePath, file, { upsert: true });
 
   if (uploadError) {
-    alert("Gagal upload foto 😢: " + uploadError.message);
+    alert("Gagal upload 😢: " + uploadError.message);
     return;
   }
 
   const { data } = supabase.storage.from("avatars").getPublicUrl(filePath);
-  const imageUrl = data.publicUrl;
+  const publicUrl = data.publicUrl;
 
-  // Update ke tabel profiles
   await supabase
     .from("profiles")
-    .update({ profile_url: imageUrl })
+    .update({ profile_url: publicUrl })
     .eq("id", userId);
 
-  profileImgEl.src = imageUrl;
-  alert("Foto profil berhasil diperbarui! ✨");
+  profileImgEl.src = publicUrl;
+  alert("Foto berhasil diperbarui! ✨");
 });
 
-// Jalankan saat halaman dibuka
+// Trigger file input saat klik icon
+editIcon.addEventListener("click", () => {
+  uploadInput.click();
+});
+
 loadProfile();
