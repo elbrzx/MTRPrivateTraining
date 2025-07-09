@@ -17,13 +17,16 @@ body {
 }
 
 .logo {
-  width: 200px;
-  margin-bottom: 40px;
+  display: block;
+  margin: 0 auto;
+  max-width: 200px;
+  margin-bottom: 0.5rem;
 }
 
 .login-form h2 {
   font-size: 24px;
   margin-bottom: 10px;
+  margin-top: 0;
 }
 
 .login-form p {
